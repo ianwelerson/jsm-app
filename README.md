@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/logo.svg" width="200" alt="Juntos Somos +">
+  <img src="src/assets/images/logo.svg" width="200" alt="Juntos Somos +">
 </p>
 
 # <frontend-developer />
