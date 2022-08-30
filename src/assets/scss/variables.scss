@@ -1,1 +1,39 @@
-// Variables here
+// --- Colors
+// Basic
+$white: #FFFFFF;
+
+// Gray
+$gray-300: #F5F5F5;
+$gray-400: #E5E5E5;
+$gray-500: #D8D8D8;
+$gray-600: #9B9B9B;
+$gray-700: #4A4A4A;
+$gray-800: #3A3A3A;
+$gray-900: #323232;
+
+
+// Blue
+$blue-500: #28B0FC;
+$blue-900: #222D39;
+
+// Misc
+$text-color: $blue-900;
+
+
+// --- Border Radius
+$radius-base: 4px;
+$radius-large: 9px;
+$radius-extra: 32px;
+$radius-full: 50%;
+
+
+// --- Border size
+$border-size-base: 1px;
+
+
+// --- Font
+$font-family-default: 'Roboto', sans-serif;
+
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
