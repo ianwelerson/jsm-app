@@ -1,4 +1,4 @@
-// --- Colors
+// --- Colors --- //
 // Basic
 $white: #FFFFFF;
 
@@ -20,20 +20,49 @@ $blue-900: #222D39;
 $text-color: $blue-900;
 
 
-// --- Border Radius
+// --- Border Radius --- //
 $radius-base: 4px;
 $radius-large: 9px;
 $radius-extra: 32px;
 $radius-full: 50%;
 
 
-// --- Border size
+// --- Border size --- //
 $border-size-base: 1px;
 
 
-// --- Font
-$font-family-default: 'Roboto', sans-serif;
+// --- Font --- //
+// Font family
+$font-sas: 'Roboto', sans-serif;
 
+// Font weight
 $font-regular: 400;
 $font-medium: 500;
 $font-bold: 700;
+
+// Font size
+$text-xs: 12px;
+$text-sm: 14px;
+$text-base: 16px;
+$text-lg: 20px;
+$text-xl: 32px;
+
+// Line height
+$leading-1: 16px;
+$leading-2: 24px;
+$leading-3: 26px;
+$leading-4: 28px;
+$leading-5: 48px;
+
+// -- Spacing --- //
+$spacing-1: 8px;
+$spacing-2: 12px;
+$spacing-3: 16px;
+$spacing-4: 18px;
+$spacing-5: 20px;
+$spacing-6: 24px;
+$spacing-7: 30px;
+$spacing-8: 32px;
+$spacing-9: 40px;
+$spacing-10: 48px;
+$spacing-11: 56px;
