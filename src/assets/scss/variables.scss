@@ -1,6 +1,7 @@
 // --- Colors --- //
 // Basic
 $white: #FFFFFF;
+$transparent: transparent;
 
 // Gray
 $gray-300: #F5F5F5;
@@ -54,7 +55,7 @@ $leading-3: 26px;
 $leading-4: 28px;
 $leading-5: 48px;
 
-// -- Spacing --- //
+// --- Spacing --- //
 $spacing-1: 8px;
 $spacing-2: 12px;
 $spacing-3: 16px;
@@ -66,3 +67,6 @@ $spacing-8: 32px;
 $spacing-9: 40px;
 $spacing-10: 48px;
 $spacing-11: 56px;
+
+// --- Misc --- //
+$content-desktop: 1136px;
