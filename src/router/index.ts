@@ -12,16 +12,25 @@ const router = createRouter({
     {
       path: '/users',
       component: () => import('@/layouts/DefaultLayout.vue'),
+      meta: {
+        title: 'Lista de membros',
+      },
       children: [
         {
           path: '',
           name: 'userList',
           component: () => import('@/views/Users/UserList/UserList.vue'),
+          meta: {
+            title: 'Lista de membros',
+          },
         },
         {
           path: ':userId',
           name: 'userDetails',
           component: () => import('@/views/Users/UserDetails/UserDetails.vue'),
+          meta: {
+            title: 'Dados do Membro',
+          },
         },
       ],
     },

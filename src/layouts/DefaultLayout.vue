@@ -1,7 +1,26 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { computed } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
+
 import PageHeader from '@/components/PageHeader/PageHeader.vue'
 import PageFooter from '@/components/PageFooter/PageFooter.vue'
+
+const route = useRoute()
+
+const currentPageTitle = computed(() => {
+  return route.meta?.title ? `${route.meta?.title} - ` : ''
+})
+
+useHead({
+  title: `${currentPageTitle.value}Juntos Somos Mais`,
+  meta: [
+    {
+      name: 'description',
+      content: 'Juntos Somos Mais hiring challenge to Front-end Developers',
+    },
+  ],
+})
 </script>
 
 <template>
