@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import PageHeader from './components/PageHeader/PageHeader.vue'
 </script>
 
 <template>
-  <PageHeader />
-
-  <main>
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
 
 <style lang="scss">

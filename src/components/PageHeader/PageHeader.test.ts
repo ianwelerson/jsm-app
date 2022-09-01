@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/vue'
-import PageHeader from './PageHeader.vue'
+import PageHeader from '@/components/PageHeader/PageHeader.vue'
 
 describe('PageHeader', () => {
   it('should render page header', async () => {

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/vue'
-import IconBase from './IconBase.vue'
+import IconBase from '@/components/IconBase/IconBase.vue'
 
 const propsExample = {
   color: '#000000',

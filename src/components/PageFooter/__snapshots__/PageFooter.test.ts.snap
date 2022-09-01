@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`PageFooter > should match the snapshot 1`] = `"Footer"`;

@@ -11,17 +11,17 @@ const router = createRouter({
     },
     {
       path: '/users',
-      component: () => import('@/views/users/UserIndex.vue'),
+      component: () => import('@/layouts/DefaultLayout.vue'),
       children: [
         {
           path: '',
           name: 'userList',
-          component: () => import('@/views/users/UserList.vue'),
+          component: () => import('@/views/Users/UserList/UserList.vue'),
         },
         {
           path: ':userId',
           name: 'userDetails',
-          component: () => import('@/views/users/UserDetails.vue'),
+          component: () => import('@/views/Users/UserDetails/UserDetails.vue'),
         },
       ],
     },
