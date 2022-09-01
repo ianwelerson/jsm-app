@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
+import IconBase from '@/components/IconBase/IconBase.vue'
 
 interface PageHeaderState {
   menuStatus: MenuState | null
@@ -12,7 +13,10 @@ const state = reactive<PageHeaderState>({
 })
 
 const menuClasses = computed(() => {
-  return ['menu', state.menuStatus ? `menu--${state.menuStatus}` : '']
+  return [
+    'header-menu',
+    state.menuStatus ? `header-menu--${state.menuStatus}` : '',
+  ]
 })
 
 const toggleMenu = () => {
@@ -22,31 +26,44 @@ const toggleMenu = () => {
 
 <template>
   <header
-    class="header"
-    :class="{ 'header--menu-opened': state.menuStatus === 'opened' }"
+    data-testid="page-header"
+    class="page-header"
+    :class="{ 'page-header--menu-opened': state.menuStatus === 'opened' }"
   >
-    <div class="header__content">
-      <div class="logo">
+    <div class="page-header__content">
+      <div class="header-logo">
         <img
           src="@/assets/images/logo.svg"
           alt="Juntos Somos Mais - Logo"
-          class="logo__image"
+          class="header-logo__image"
         />
       </div>
       <div :class="menuClasses">
-        <div class="menu__item" id="tp-header-search-spot"></div>
-        <div class="menu__item">
+        <div class="header-menu__item" id="tp-header-search-spot"></div>
+        <div class="header-menu__item">
           <div class="fake-content"></div>
         </div>
-        <div class="menu__item">
+        <div class="header-menu__item">
           <div class="fake-content"></div>
         </div>
-        <div class="menu__close">
-          <button @click="toggleMenu">X</button>
+        <div class="header-menu__close">
+          <button
+            @click="toggleMenu"
+            class="close-btn"
+            data-testid="page-header-menu-open"
+          >
+            <IconBase name="IconClose" :height="32" color="#222D39" />
+          </button>
         </div>
       </div>
       <div class="mobile-menu">
-        <button @click="toggleMenu">=</button>
+        <button
+          @click="toggleMenu"
+          class="mobile-menu__btn"
+          data-testid="page-header-menu-close"
+        >
+          <IconBase name="IconMenu" :height="32" color="#222D39" />
+        </button>
       </div>
     </div>
   </header>
@@ -57,7 +74,7 @@ $mobile-menu-width: calc(
   (60vw + $spacing-3 + $spacing-3) * -1
 ); // Translate the menu the equivalent of his width + padding
 
-.header {
+.page-header {
   background-color: $gray-300;
   display: flex;
   justify-content: center;
@@ -97,7 +114,7 @@ $mobile-menu-width: calc(
   }
 }
 
-.menu {
+.header-menu {
   align-items: center;
   background: $gray-300;
   box-shadow: 6px 0px 10px 0px rgba(155, 155, 155, 0.4);
@@ -106,7 +123,7 @@ $mobile-menu-width: calc(
   height: 100vh;
   left: 0;
   opacity: 0;
-  padding: $spacing-9 $spacing-3 $spacing-3 $spacing-3;
+  padding: $spacing-11 $spacing-3 $spacing-3 $spacing-3;
   position: fixed;
   top: 0;
   transform: translateX($mobile-menu-width);
@@ -161,14 +178,30 @@ $mobile-menu-width: calc(
     @include screen('lg') {
       display: none;
     }
+
+    .close-btn {
+      background-color: $transparent;
+      border: none;
+    }
   }
 }
 
-.logo {
+.header-logo {
   width: 148px;
 
   &__image {
     object-fit: contain;
+  }
+}
+
+.mobile-menu {
+  @include screen('lg') {
+    display: none;
+  }
+
+  &__btn {
+    background-color: $transparent;
+    border: none;
   }
 }
 
@@ -181,12 +214,6 @@ $mobile-menu-width: calc(
   @include screen('lg') {
     height: 16px;
     width: 12vw;
-  }
-}
-
-.mobile-menu {
-  @include screen('lg') {
-    display: none;
   }
 }
 

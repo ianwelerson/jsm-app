@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
 import Vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
@@ -14,6 +15,11 @@ export default defineConfig({
         'node_modules/**',
         'src/components/IconBase/IconOptions/**',
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
