@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`SearchBar > should match the snapshot 1`] = `
+"<div class=\\"search-bar\\" data-v-e8d9439a=\\"\\">
+  <div class=\\"search-bar__content\\" data-v-e8d9439a=\\"\\"><label class=\\"search-bar__wrapper\\" for=\\"search-bar\\" data-v-e8d9439a=\\"\\">
+      <div class=\\"search-bar__icon\\" data-v-e8d9439a=\\"\\">
+        <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-e8d9439a=\\"\\">
+          <!---->
+        </div>
+      </div><input data-testid=\\"search-bar-input\\" class=\\"search-bar__input\\" id=\\"search-bar\\" name=\\"search-term\\" placeholder=\\"Buscar aqui\\" type=\\"text\\" data-v-e8d9439a=\\"\\">
+    </label></div>
+</div>"
+`;

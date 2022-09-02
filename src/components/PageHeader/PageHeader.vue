@@ -133,11 +133,14 @@ $mobile-menu-width: calc(
   @include screen('lg') {
     background: $transparent;
     box-shadow: none;
+    flex: 1;
+    justify-content: flex-end;
     flex-direction: row;
     height: auto;
     opacity: 1;
     padding: 0;
     position: relative;
+    margin-left: $spacing-3;
     transform: none;
     width: auto;
   }
@@ -159,6 +162,11 @@ $mobile-menu-width: calc(
 
   &__item {
     width: 100%;
+
+    @include screen('lg') {
+      max-width: 100%;
+      width: auto;
+    }
 
     &:not(:last-child) {
       margin-bottom: $spacing-3;

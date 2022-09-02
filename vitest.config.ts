@@ -14,6 +14,7 @@ export default defineConfig({
         '**/*.test.ts',
         'node_modules/**',
         'src/components/IconBase/IconOptions/**',
+        'src/utils/index.ts',
       ],
     },
   },

@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import UserCard from '@/views/Users/UserList/components/UserCard.vue'
+import SearchBar from '@/components/SearchBar/SearchBar.vue'
 
 interface UserListState {
   shortStateList: boolean
+  showSearchBar: boolean
 }
 
 const state = reactive<UserListState>({
   shortStateList: true,
+  showSearchBar: false,
 })
 
 const toggleVisibleStates = () => {
   state.shortStateList = !state.shortStateList
 }
+
+const handleSearchUpdate = (query: string) => {
+  console.log(query)
+}
+
+onMounted(() => {
+  // avoid error when trying to load search with teleport before header is loaded
+  state.showSearchBar = true
+})
 </script>
 
 <template>
@@ -40,16 +52,17 @@ const toggleVisibleStates = () => {
         </section>
       </div>
     </div>
+    <Teleport v-if="state.showSearchBar" to="#tp-header-search-spot">
+      <div class="page-user-list__search-bar">
+        <SearchBar @update="handleSearchUpdate" />
+      </div>
+    </Teleport>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .page-user-list {
   margin-top: $spacing-6;
-
-  &__wrapper {
-    //
-  }
 
   &__title {
     font-size: $text-xl;
@@ -60,6 +73,15 @@ const toggleVisibleStates = () => {
 
   &__content {
     display: flex;
+  }
+
+  &__search-bar {
+    display: none;
+
+    @include screen('lg') {
+      width: 400px;
+      display: flex;
+    }
   }
 }
 
