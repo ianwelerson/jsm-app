@@ -5,24 +5,26 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'appHome',
       redirect: {
         name: 'userList',
       },
     },
     {
       path: '/users',
-      component: () => import('@/layouts/DefaultLayout.vue'),
+      name: 'userList',
       meta: {
         title: 'Lista de membros',
       },
+      redirect: {
+        name: 'userListIndex',
+      },
+      component: () => import('@/layouts/DefaultLayout.vue'),
       children: [
         {
           path: '',
-          name: 'userList',
+          name: 'userListIndex',
           component: () => import('@/views/Users/UserList/UserList.vue'),
-          meta: {
-            title: 'Lista de membros',
-          },
         },
         {
           path: ':userId',

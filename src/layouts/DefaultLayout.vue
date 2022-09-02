@@ -5,6 +5,7 @@ import { useHead } from '@vueuse/head'
 
 import PageHeader from '@/components/PageHeader/PageHeader.vue'
 import PageFooter from '@/components/PageFooter/PageFooter.vue'
+import PageBreadcrumb from '@/components/PageBreadcrumb/PageBreadcrumb.vue'
 
 const route = useRoute()
 
@@ -29,8 +30,11 @@ useHead({
       <PageHeader />
     </div>
 
-    <main class="default-layout__content">
-      <RouterView />
+    <main class="default-layout__main">
+      <div class="default-layout__page-content">
+        <PageBreadcrumb />
+        <RouterView />
+      </div>
     </main>
 
     <div class="default-layout__footer">
@@ -44,9 +48,27 @@ useHead({
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  &__content {
+  &__header {
+    width: 100%;
+  }
+
+  &__main {
+    display: flex;
     flex: 1;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__page-content {
+    max-width: $content-desktop;
+    margin: $spacing-6 $spacing-6;
+    width: 100%;
+  }
+
+  &__footer {
+    width: 100%;
   }
 }
 </style>

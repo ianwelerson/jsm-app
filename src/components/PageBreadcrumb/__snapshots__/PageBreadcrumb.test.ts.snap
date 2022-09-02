@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`PageBreadcrumb > should match the snapshot 1`] = `
+"<section class=\\"page-breadcrumb\\" data-v-341583bf=\\"\\">
+  <ul class=\\"page-breadcrumb__content\\" data-v-341583bf=\\"\\">
+    <routerlink class=\\"page-breadcrumb__item\\" to=\\"[object Object]\\" data-testid=\\"breadcrumb-item\\" data-v-341583bf=\\"\\">Home<span class=\\"page-breadcrumb__separator\\" data-v-341583bf=\\"\\">&gt;</span></routerlink>
+    <routerlink class=\\"page-breadcrumb__item\\" to=\\"[object Object]\\" data-testid=\\"breadcrumb-item\\" data-v-341583bf=\\"\\">My Page<span class=\\"page-breadcrumb__separator\\" data-v-341583bf=\\"\\">&gt;</span></routerlink>
+    <routerlink class=\\"page-breadcrumb__item\\" to=\\"[object Object]\\" data-testid=\\"breadcrumb-item\\" data-v-341583bf=\\"\\">My Second Page
+      <!--v-if-->
+    </routerlink>
+  </ul>
+</section>"
+`;
