@@ -103,7 +103,7 @@ $mobile-menu-width: calc(
       height: 100vh;
       top: 0;
       left: 0;
-      background-color: $gray-900;
+      background-color: $gray-1000;
       opacity: 0.3;
       z-index: 0;
 

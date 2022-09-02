@@ -50,7 +50,7 @@ import IconBase from '@/components/IconBase/IconBase.vue'
 .page-footer {
   &__content {
     align-items: center;
-    background-color: $gray-800;
+    background-color: $gray-900;
     display: flex;
     flex-direction: column;
     padding: $spacing-8 $spacing-6 $spacing-11 $spacing-6;
