@@ -72,7 +72,7 @@ const breadcrumbData = computed(() => {
     font-size: $text-xs;
     line-height: $leading-1;
     text-decoration: none;
-    color: $blue-900;
+    color: $text-color;
   }
 
   &__separator {
