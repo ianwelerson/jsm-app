@@ -2,6 +2,8 @@
 import { onMounted, reactive } from 'vue'
 import type { CountryStates, UserListResponse } from '@/types'
 
+import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
+
 import UserCard from '@/views/Users/UserList/components/UserCard/UserCard.vue'
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
@@ -35,6 +37,10 @@ const handleSearchUpdate = (query: string) => {
 
 const handleStateFilterUpdate = (state: string[]) => {
   filters.state = state
+}
+
+const handleSortUpdate = (event: Event) => {
+  console.log((event.target as HTMLSelectElement)?.value)
 }
 
 const handlePaginationUpdate = (page: number) => {
@@ -115,7 +121,27 @@ onMounted(() => {
               Exibindo {{ state.userList?.users.length ?? 0 }} de
               {{ state.userList?.totalUsers || 0 }} itens
             </p>
-            <div class="main-content__sort">Ordernar por: Nome</div>
+            <div class="main-content__sort">
+              <div class="sort-block">
+                <p class="sort-block__text">Ordernar por:</p>
+                <div class="sort-block__field">
+                  <BaseSelect
+                    @change="handleSortUpdate"
+                    name="sort-users"
+                    :options="[
+                      {
+                        name: 'Nome',
+                        value: 'name',
+                      },
+                      {
+                        name: 'Cidade',
+                        value: 'city',
+                      },
+                    ]"
+                  />
+                </div>
+              </div>
+            </div>
           </section>
           <section class="main-content__bottom">
             <div
@@ -160,7 +186,6 @@ onMounted(() => {
     font-size: $text-xl;
     font-weight: $font-bold;
     line-height: $leading-5;
-    color: $text-color;
   }
 
   &__content {
@@ -225,6 +250,23 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     margin: $spacing-9 0 $spacing-8 0;
+  }
+}
+
+.sort-block {
+  display: flex;
+  align-items: center;
+
+  &__text {
+    font-size: $text-sm;
+    font-weight: $font-medium;
+    line-height: $leading-2;
+    padding-right: $spacing-1;
+  }
+
+  &__field {
+    min-width: 65px;
+    max-width: 130px;
   }
 }
 </style>

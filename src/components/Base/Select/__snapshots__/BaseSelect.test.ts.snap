@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`BaseSelect > should match the snapshot 1`] = `"<select class=\\"base-select\\" data-v-bd273b9f=\\"\\"></select>"`;

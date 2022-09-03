@@ -107,7 +107,6 @@ const emit = defineEmits<{
   height: 100%;
 
   &__title {
-    color: $text-color;
     font-size: $text-lg;
     font-weight: $font-medium;
     line-height: $leading-2;
@@ -132,7 +131,6 @@ const emit = defineEmits<{
   }
 
   &__label {
-    color: $text-color;
     font-size: $text-base;
     line-height: $leading-4;
     margin-left: $spacing-2;
@@ -141,7 +139,6 @@ const emit = defineEmits<{
   &__show-more {
     background-color: $transparent;
     border: none;
-    color: $text-color;
     cursor: pointer;
     font-size: $text-base;
     line-height: $leading-4;
