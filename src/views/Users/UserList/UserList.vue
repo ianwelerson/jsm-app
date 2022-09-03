@@ -5,6 +5,7 @@ import type { CountryStates, UserListResponse } from '@/types'
 import UserCard from '@/views/Users/UserList/components/UserCard/UserCard.vue'
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
+import PaginationNav from '@/components/PaginationNav/PaginationNav.vue'
 
 interface UserListState {
   showSearchBar: boolean
@@ -34,6 +35,10 @@ const handleSearchUpdate = (query: string) => {
 
 const handleStateFilterUpdate = (state: string[]) => {
   filters.state = state
+}
+
+const handlePaginationUpdate = (page: number) => {
+  console.log(`navegate to: ${page}`)
 }
 
 onMounted(() => {
@@ -89,9 +94,9 @@ onMounted(() => {
         postcode: 43646,
       },
     ],
-    totalPages: 10,
+    totalPages: 22,
     totalUsers: 90,
-    currentPage: 1,
+    currentPage: 2,
   }
 })
 </script>
@@ -104,7 +109,7 @@ onMounted(() => {
         <aside class="page-user-list__side-bar">
           <StateFilter @update="handleStateFilterUpdate" />
         </aside>
-        <section class="page-user-list__main">
+        <section class="page-user-list__main main-content">
           <section class="main-content__top">
             <p class="main-content__count">
               Exibindo {{ state.userList?.users.length ?? 0 }} de
@@ -128,6 +133,13 @@ onMounted(() => {
                 :postcode="user.postcode"
               />
             </div>
+          </section>
+          <section class="main-content__pagination">
+            <PaginationNav
+              :max="state.userList?.totalPages ?? 0"
+              :current="state.userList?.currentPage ?? 0"
+              @go-to="handlePaginationUpdate"
+            />
           </section>
         </section>
       </div>
@@ -199,14 +211,20 @@ onMounted(() => {
   }
 
   &__user-card {
-    width: calc(33.33% - $spacing-3);
     padding: 0 $spacing-1 $spacing-3 $spacing-1;
+    width: calc(33.33% - $spacing-3);
   }
 
   &__count {
     font-size: $text-base;
     font-weight: $font-regular;
     line-height: $leading-4;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin: $spacing-9 0 $spacing-8 0;
   }
 }
 </style>

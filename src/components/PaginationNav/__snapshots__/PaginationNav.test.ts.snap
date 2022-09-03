@@ -1,0 +1,38 @@
+// Vitest Snapshot v1
+
+exports[`PaginationNav > should match the snapshot 1`] = `
+"<div class=\\"pagination-nav\\" data-v-f73af3a4=\\"\\">
+  <div class=\\"pagination-nav__content\\" data-v-f73af3a4=\\"\\">
+    <div class=\\"pagination-nav__arrow\\" data-v-f73af3a4=\\"\\"><button class=\\"pagination-arrow\\" data-testid=\\"pagination-nav-prev\\" data-v-f73af3a4=\\"\\">
+        <div class=\\"pagination-arrow__icon\\" data-v-f73af3a4=\\"\\">
+          <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-f73af3a4=\\"\\">
+            <!---->
+          </div>
+        </div>
+      </button></div>
+    <div class=\\"pagination-nav__numbers\\" data-v-f73af3a4=\\"\\"><button class=\\"pagination-number\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">1</p>
+      </button>
+      <div class=\\"pagination-number__has-more\\" data-v-f73af3a4=\\"\\">...</div><button class=\\"pagination-number pagination-number--current\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">10</p>
+      </button><button class=\\"pagination-number\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">11</p>
+      </button><button class=\\"pagination-number\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">12</p>
+      </button><button class=\\"pagination-number\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">13</p>
+      </button>
+      <div class=\\"pagination-number__has-more\\" data-v-f73af3a4=\\"\\">...</div><button class=\\"pagination-number\\" data-v-f73af3a4=\\"\\">
+        <p class=\\"pagination-number__value\\" data-v-f73af3a4=\\"\\">22</p>
+      </button>
+    </div>
+    <div class=\\"pagination-nav__arrow\\" data-v-f73af3a4=\\"\\"><button class=\\"pagination-arrow\\" data-testid=\\"pagination-nav-next\\" data-v-f73af3a4=\\"\\">
+        <div class=\\"pagination-arrow__icon\\" data-v-f73af3a4=\\"\\">
+          <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-f73af3a4=\\"\\">
+            <!---->
+          </div>
+        </div>
+      </button></div>
+  </div>
+</div>"
+`;

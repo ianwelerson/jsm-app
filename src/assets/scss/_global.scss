@@ -1,9 +1,11 @@
 body {
+  font-family: $font-sans;
   min-height: 100vh;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
+  width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: $font-sans;
 }
 
 p {
