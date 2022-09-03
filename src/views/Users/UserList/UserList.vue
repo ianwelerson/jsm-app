@@ -194,12 +194,13 @@ onMounted(() => {
   &__bottom {
     display: flex;
     flex-wrap: wrap;
-    margin: $spacing-3 negative($spacing-1) 0 negative($spacing-1);
+    margin: $spacing-3 negative($spacing-1) negative($spacing-3)
+      negative($spacing-1);
   }
 
   &__user-card {
     width: calc(33.33% - $spacing-3);
-    padding: $spacing-1;
+    padding: 0 $spacing-1 $spacing-3 $spacing-1;
   }
 
   &__count {
