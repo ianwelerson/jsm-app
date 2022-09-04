@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`ContentBlock > should match the snapshot 1`] = `
+"<div class=\\"content-block\\" data-v-f09174f5=\\"\\">
+  <p class=\\"content-block__title\\" data-v-f09174f5=\\"\\">My field</p>
+  <p class=\\"content-block__value\\" data-v-f09174f5=\\"\\">My value</p>
+</div>"
+`;
