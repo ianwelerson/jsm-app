@@ -214,7 +214,7 @@ onMounted(() => {
     min-height: 30vh;
 
     @include screen('lg') {
-      width: 15vw;
+      width: 250px;
     }
   }
 

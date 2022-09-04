@@ -196,6 +196,7 @@ $mobile-menu-width: calc(
 
 .header-logo {
   width: 148px;
+  min-width: 148px;
 
   &__image {
     object-fit: contain;
@@ -221,7 +222,7 @@ $mobile-menu-width: calc(
 
   @include screen('lg') {
     height: 16px;
-    width: 12vw;
+    width: 150px;
   }
 }
 
