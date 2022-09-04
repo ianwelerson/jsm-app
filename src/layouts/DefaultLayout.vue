@@ -33,7 +33,9 @@ useHead({
     <main class="default-layout__main">
       <div class="default-layout__page-content">
         <PageBreadcrumb />
-        <RouterView />
+        <Transition name="fade">
+          <RouterView />
+        </Transition>
       </div>
     </main>
 
@@ -74,5 +76,16 @@ useHead({
   &__footer {
     width: 100%;
   }
+}
+
+// Page transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
