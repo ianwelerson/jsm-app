@@ -31,13 +31,13 @@ const toggleMenu = () => {
     :class="{ 'page-header--menu-opened': state.menuStatus === 'opened' }"
   >
     <div class="page-header__content">
-      <div class="header-logo">
+      <RouterLink :to="{ name: 'appHome' }" class="header-logo">
         <img
           src="@/assets/images/logo.svg"
           alt="Juntos Somos Mais - Logo"
           class="header-logo__image"
         />
-      </div>
+      </RouterLink>
       <div :class="menuClasses">
         <div class="header-menu__item" id="tp-header-search-spot"></div>
         <div class="header-menu__item">

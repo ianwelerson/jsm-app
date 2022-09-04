@@ -3,7 +3,7 @@
 exports[`PageHeader > should match the snapshot 1`] = `
 "<header data-testid=\\"page-header\\" class=\\"page-header\\" data-v-40300573=\\"\\">
   <div class=\\"page-header__content\\" data-v-40300573=\\"\\">
-    <div class=\\"header-logo\\" data-v-40300573=\\"\\"><img src=\\"/src/assets/images/logo.svg\\" alt=\\"Juntos Somos Mais - Logo\\" class=\\"header-logo__image\\" data-v-40300573=\\"\\"></div>
+    <routerlink to=\\"[object Object]\\" class=\\"header-logo\\" data-v-40300573=\\"\\"><img src=\\"/src/assets/images/logo.svg\\" alt=\\"Juntos Somos Mais - Logo\\" class=\\"header-logo__image\\" data-v-40300573=\\"\\"></routerlink>
     <div class=\\"header-menu\\" data-v-40300573=\\"\\">
       <div class=\\"header-menu__item\\" id=\\"tp-header-search-spot\\" data-v-40300573=\\"\\"></div>
       <div class=\\"header-menu__item\\" data-v-40300573=\\"\\">
