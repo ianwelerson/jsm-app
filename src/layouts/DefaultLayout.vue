@@ -62,9 +62,13 @@ useHead({
   }
 
   &__page-content {
-    max-width: $content-desktop;
-    margin: $spacing-6 $spacing-6;
+    padding: $spacing-6 $spacing-6;
+    min-width: 0;
     width: 100%;
+
+    @include screen('lg') {
+      max-width: $content-desktop;
+    }
   }
 
   &__footer {

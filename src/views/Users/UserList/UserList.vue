@@ -189,8 +189,13 @@ onMounted(() => {
   }
 
   &__content {
-    align-items: flex-start;
+    flex-direction: column;
     display: flex;
+
+    @include screen('lg') {
+      align-items: flex-start;
+      flex-direction: row;
+    }
   }
 
   &__search-bar {
@@ -207,14 +212,20 @@ onMounted(() => {
     border-radius: $radius-base;
     padding: $spacing-6;
     min-height: 30vh;
-    width: 15vw;
+
+    @include screen('lg') {
+      width: 15vw;
+    }
   }
 
   &__main {
     flex: 1;
-    margin-left: $spacing-3;
     display: flex;
     flex-direction: column;
+
+    @include screen('lg') {
+      margin-left: $spacing-3;
+    }
   }
 }
 
@@ -225,7 +236,12 @@ onMounted(() => {
     border-radius: $radius-base;
     display: flex;
     justify-content: space-between;
+    margin-top: $spacing-3;
     padding: $spacing-3;
+
+    @include screen('lg') {
+      margin-top: 0;
+    }
   }
 
   &__bottom {
@@ -237,7 +253,11 @@ onMounted(() => {
 
   &__user-card {
     padding: 0 $spacing-1 $spacing-3 $spacing-1;
-    width: calc(33.33% - $spacing-3);
+    width: 100%;
+
+    @include screen('lg') {
+      width: calc(33.33% - $spacing-3);
+    }
   }
 
   &__count {
@@ -254,8 +274,8 @@ onMounted(() => {
 }
 
 .sort-block {
-  display: flex;
   align-items: center;
+  display: flex;
 
   &__text {
     font-size: $text-sm;

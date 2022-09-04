@@ -114,7 +114,11 @@ const emit = defineEmits<{
 
   &__numbers {
     display: flex;
-    margin: 0 $spacing-3;
+    margin: 0 $spacing-1;
+
+    @include screen('lg') {
+      margin: 0 $spacing-3;
+    }
   }
 }
 
@@ -147,8 +151,12 @@ const emit = defineEmits<{
   cursor: pointer;
   display: flex;
   justify-content: center;
-  padding: 0 $spacing-3;
+  padding: 0 $spacing-2;
   position: relative;
+
+  @include screen('lg') {
+    padding: 0 $spacing-3;
+  }
 
   &__value,
   &__has-more {

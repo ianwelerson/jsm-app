@@ -1,9 +1,14 @@
+html,
+body {
+  overflow-x: hidden;
+  width: 100vw;
+  margin: 0;
+}
+
 body {
   font-family: $font-sans;
   min-height: 100vh;
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
-  width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $text-color;
