@@ -2,15 +2,23 @@
 export interface ContentBlockProps {
   title: string
   value: string | number
+  capitalize?: boolean
 }
 
-const props = defineProps<ContentBlockProps>()
+const props = withDefaults(defineProps<ContentBlockProps>(), {
+  capitalize: true,
+})
 </script>
 
 <template>
   <div class="content-block">
     <p class="content-block__title">{{ props.title }}</p>
-    <p class="content-block__value">{{ props.value }}</p>
+    <p
+      class="content-block__value"
+      :class="{ 'content-block__value--capitalize': props.capitalize }"
+    >
+      {{ props.value }}
+    </p>
   </div>
 </template>
 
@@ -34,7 +42,10 @@ const props = defineProps<ContentBlockProps>()
     margin: 0;
     font-size: $text-base;
     font-weight: $font-medium;
-    text-transform: capitalize;
+
+    &--capitalize {
+      text-transform: capitalize;
+    }
   }
 }
 </style>

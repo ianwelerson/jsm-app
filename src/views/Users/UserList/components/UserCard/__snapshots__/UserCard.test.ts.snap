@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`UserCard > should match the snapshot 1`] = `
-"<routerlink to=\\"[object Object]\\" class=\\"user-card\\" data-v-671e15bc=\\"\\">
+"<routerlink to=\\"[object Object]\\" class=\\"user-card\\" data-testid=\\"user-card\\" data-v-671e15bc=\\"\\">
   <div class=\\"user-card__wrapper\\" data-v-671e15bc=\\"\\">
     <div class=\\"user-card__profile\\" data-v-671e15bc=\\"\\"><img alt=\\"Foto de undefined\\" class=\\"user-card__picture\\" data-v-671e15bc=\\"\\"></div>
     <p class=\\"user-card__name\\" data-v-671e15bc=\\"\\"></p>

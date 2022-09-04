@@ -96,7 +96,11 @@ onMounted(() => {
             <div class="info-block__data info-block__data--inline">
               <ContentBlock title="Telefone" :value="state.userData.phone" />
               <ContentBlock title="Celular" :value="state.userData.cell" />
-              <ContentBlock title="E-mail" :value="state.userData.email" />
+              <ContentBlock
+                title="E-mail"
+                :value="state.userData.email"
+                :capitalize="false"
+              />
             </div>
           </div>
           <div class="info-block">
