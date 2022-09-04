@@ -16,6 +16,7 @@ const props = defineProps<UserCardProps>()
   <RouterLink
     :to="{ name: 'userDetails', params: { userId: props.id } }"
     class="user-card"
+    data-testid="user-card"
   >
     <div class="user-card__wrapper">
       <div class="user-card__profile">
