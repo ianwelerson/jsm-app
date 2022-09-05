@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { onBeforeMount, reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import router from '@/router'
+
+import { useFetch } from '@/composable/useFetch'
 import type { UserData } from '@/types'
 
 import ContentBlock from './components/ContentBlock/ContentBlock.vue'
@@ -7,6 +11,12 @@ import ContentBlock from './components/ContentBlock/ContentBlock.vue'
 export interface UserDetailsState {
   userData: UserData | null
 }
+
+const route = useRoute()
+
+const { execute: getUserData, error: hasAPiError } = useFetch(
+  `/users/${route.params.userId}`
+)
 
 const state = reactive<UserDetailsState>({
   userData: null,
@@ -18,47 +28,20 @@ const formatDate = (date: string) => {
   return dateObj.toLocaleDateString()
 }
 
-onMounted(() => {
-  // Mock
-  state.userData = {
-    id: 'alejandra.rodrigues',
-    gender: 'female',
-    name: {
-      title: 'mrs',
-      first: 'alejandra',
-      last: 'rodrigues',
-    },
-    location: {
-      street: '3833 rua santa catarina ',
-      city: 'umuarama',
-      state: 'santa catarina',
-      postcode: 43646,
-      coordinates: {
-        latitude: '-50.7186',
-        longitude: '-20.4596',
-      },
-      timezone: {
-        offset: '+3:00',
-        description: 'Baghdad, Riyadh, Moscow, St. Petersburg',
-      },
-    },
-    email: 'alejandra.rodrigues@example.com',
-    dob: {
-      date: '1974-05-16T14:46:15Z',
-      age: 44,
-    },
-    registered: {
-      date: '2013-03-06T16:09:16Z',
-      age: 5,
-    },
-    phone: '(09) 7033-7406',
-    cell: '(54) 3190-3469',
-    picture: {
-      large: 'https://randomuser.me/api/portraits/women/18.jpg',
-      medium: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-      thumbnail: 'https://randomuser.me/api/portraits/thumb/women/18.jpg',
-    },
+const loadUserData = async () => {
+  const { data } = await getUserData()
+
+  if (hasAPiError.value) {
+    await router.push({ name: 'userList' })
+
+    return
   }
+
+  state.userData = data.value as UserData
+}
+
+onBeforeMount(() => {
+  loadUserData()
 })
 </script>
 
@@ -179,7 +162,7 @@ onMounted(() => {
     align-self: center;
     border: $border-size-base solid $gray-400;
     border-radius: $radius-full;
-    height: 100%;
+    height: calc($spacing-11 * 2);
     margin-top: negative($spacing-11);
     overflow: hidden;
     width: calc($spacing-11 * 2);
