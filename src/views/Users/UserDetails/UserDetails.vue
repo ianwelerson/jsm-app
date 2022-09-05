@@ -14,9 +14,11 @@ export interface UserDetailsState {
 
 const route = useRoute()
 
-const { execute: getUserData, error: hasAPiError } = useFetch(
-  `/users/${route.params.userId}`
-)
+const {
+  execute: getUserData,
+  error: hasAPiError,
+  isLoading,
+} = useFetch(`/users/${route.params.userId}`)
 
 const state = reactive<UserDetailsState>({
   userData: null,
@@ -47,7 +49,40 @@ onBeforeMount(() => {
 
 <template>
   <div class="page-user-details">
-    <div v-if="state.userData" class="page-user-details__content">
+    <!-- Skeleton block -->
+    <div
+      v-if="!state.userData || isLoading"
+      class="page-user-details__content page-user-details__content--skeleton"
+    >
+      <div class="profile-card">
+        <div class="profile-card__content">
+          <div class="profile-card__picture">
+            <div
+              class="profile-card__image profile-card__image--skeleton"
+            ></div>
+          </div>
+          <div class="profile-card__block profile-card__block--skeleton"></div>
+          <div class="profile-card__block profile-card__block--skeleton"></div>
+        </div>
+      </div>
+      <div class="aditional-info">
+        <div class="aditional-info__content">
+          <div class="info-block">
+            <h3 class="info-block__title">Contato</h3>
+            <div class="info-block__data info-block__data--skeleton"></div>
+          </div>
+          <div class="info-block">
+            <h3 class="info-block__title">Endereço</h3>
+            <div class="info-block__data info-block__data--skeleton"></div>
+            <div class="info-block__data">
+              <div class="map-embed map-embed--skeleton"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Real content block -->
+    <div v-else class="page-user-details__content">
       <div class="profile-card">
         <div class="profile-card__content">
           <div class="profile-card__picture">
@@ -172,10 +207,19 @@ onBeforeMount(() => {
     height: 100%;
     object-fit: contain;
     width: 100%;
+
+    &--skeleton {
+      @include skeleton;
+    }
   }
 
   &__block {
     margin-top: $spacing-6;
+
+    &--skeleton {
+      height: 20px;
+      @include skeleton;
+    }
 
     &--inline {
       display: flex;
@@ -217,6 +261,12 @@ onBeforeMount(() => {
   &__data {
     margin-top: $spacing-2;
 
+    &--skeleton {
+      height: 30px;
+      width: 80%;
+      @include skeleton;
+    }
+
     &--inline {
       display: flex;
       flex-direction: column;
@@ -230,5 +280,10 @@ onBeforeMount(() => {
 
 .map-embed {
   height: 250px;
+
+  &--skeleton {
+    width: 100%;
+    @include skeleton;
+  }
 }
 </style>
