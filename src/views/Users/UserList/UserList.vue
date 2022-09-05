@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted, reactive, watch } from 'vue'
-import type { UserListResponse } from '@/types'
+import type { UserListResponse, UserSortOptions } from '@/types'
 import { useFetch } from '@/composable/useFetch'
 
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
@@ -27,6 +27,33 @@ interface SortData {
   [key: string]: string
 }
 
+const SORT_OPTIONS: UserSortOptions[] = [
+  {
+    name: 'Nome',
+    value: 'name',
+  },
+  {
+    name: 'Rua',
+    value: 'street',
+  },
+  {
+    name: 'Cidade',
+    value: 'city',
+  },
+  {
+    name: 'Estado',
+    value: 'state',
+  },
+  {
+    name: 'CEP',
+    value: 'postcode',
+  },
+  {
+    name: 'Id',
+    value: 'name',
+  },
+]
+
 const { execute: getUserList } = useFetch(REQUEST_URL)
 
 const state = reactive<UserListState>({
@@ -37,7 +64,7 @@ const state = reactive<UserListState>({
 const filters = reactive<UserListFilters>({
   state: [],
   query: '',
-  sort: '',
+  sort: SORT_OPTIONS[0].value,
 })
 
 const handleSearchUpdate = (query: string) => {
@@ -117,16 +144,7 @@ onMounted(() => {
                   <BaseSelect
                     @change="handleSortUpdate"
                     name="sort-users"
-                    :options="[
-                      {
-                        name: 'Nome',
-                        value: 'name',
-                      },
-                      {
-                        name: 'Cidade',
-                        value: 'city',
-                      },
-                    ]"
+                    :options="SORT_OPTIONS"
                   />
                 </div>
               </div>

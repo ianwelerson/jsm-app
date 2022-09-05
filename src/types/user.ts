@@ -40,6 +40,11 @@ export interface UserData {
   cell: string
 }
 
+export interface UserSortOptions {
+  name: string
+  value: keyof UserListData
+}
+
 export interface UserListData {
   id: string
   picture: string
