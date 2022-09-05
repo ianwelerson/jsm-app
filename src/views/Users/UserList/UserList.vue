@@ -6,6 +6,7 @@ import { useFetch } from '@/composable/useFetch'
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
 
 import UserCard from '@/views/Users/UserList/components/UserCard/UserCard.vue'
+import UserCardSkeleton from '@/views/Users/UserList/components/UserCard/UserCardSkeleton.vue'
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
 import PaginationNav from '@/components/PaginationNav/PaginationNav.vue'
@@ -54,7 +55,7 @@ const SORT_OPTIONS: UserSortOptions[] = [
   },
 ]
 
-const { execute: getUserList } = useFetch(REQUEST_URL)
+const { execute: getUserList, isLoading } = useFetch(REQUEST_URL)
 
 const state = reactive<UserListState>({
   showSearchBar: false,
@@ -137,7 +138,7 @@ onMounted(() => {
               Exibindo {{ state.userList?.users.length ?? 0 }} de
               {{ state.userList?.totalUsers || 0 }} itens
             </p>
-            <div class="main-content__sort">
+            <div v-if="!isLoading" class="main-content__sort">
               <div class="sort-block">
                 <p class="sort-block__text">Ordernar por:</p>
                 <div class="sort-block__field">
@@ -152,24 +153,35 @@ onMounted(() => {
           </section>
           <section class="main-content__bottom">
             <TransitionGroup name="fade" mode="out-in">
-              <div
-                v-for="user in state.userList?.users"
-                :key="user.id"
-                class="main-content__user-card"
-              >
-                <UserCard
-                  :id="user.id"
-                  :picture="user.picture"
-                  :name="user.name"
-                  :street="user.street"
-                  :city="user.city"
-                  :state="user.state"
-                  :postcode="user.postcode"
-                />
-              </div>
+              <template v-if="isLoading">
+                <div
+                  v-for="skeleton in 9"
+                  :key="skeleton"
+                  class="main-content__user-card"
+                >
+                  <UserCardSkeleton />
+                </div>
+              </template>
+              <template v-else>
+                <div
+                  v-for="user in state.userList?.users"
+                  :key="user.id"
+                  class="main-content__user-card"
+                >
+                  <UserCard
+                    :id="user.id"
+                    :picture="user.picture"
+                    :name="user.name"
+                    :street="user.street"
+                    :city="user.city"
+                    :state="user.state"
+                    :postcode="user.postcode"
+                  />
+                </div>
+              </template>
             </TransitionGroup>
           </section>
-          <section class="main-content__pagination">
+          <section v-if="!isLoading" class="main-content__pagination">
             <PaginationNav
               :max="state.userList?.totalPages ?? 0"
               :current="state.userList?.currentPage ?? 0"
@@ -179,7 +191,10 @@ onMounted(() => {
         </section>
       </div>
     </div>
-    <Teleport v-if="state.showSearchBar" to="#tp-header-search-spot">
+    <Teleport
+      v-if="state.showSearchBar && !isLoading"
+      to="#tp-header-search-spot"
+    >
       <div class="page-user-list__search-bar">
         <SearchBar @update="handleSearchUpdate" />
       </div>
