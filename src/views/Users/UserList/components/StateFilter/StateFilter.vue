@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, watch } from 'vue'
-import type { CountryStates } from '@/types'
+import { computed, onBeforeMount, reactive, watch } from 'vue'
+import { useFetch } from '@/composable/useFetch'
+import type { CheckboxFormat } from '@/types'
 
 const SHORT_COUNTRY_LIST_NUM = 5
 
 interface StateFilterState {
   shortStateList: boolean
-  countryStates: CountryStates[]
+  countryStates: CheckboxFormat[]
   selectedState: string[]
 }
+
+const { execute: getStateList } = useFetch('/states')
 
 const state = reactive<StateFilterState>({
   shortStateList: true,
@@ -33,34 +36,21 @@ const toggleVisibleStates = () => {
   state.shortStateList = !state.shortStateList
 }
 
-onMounted(() => {
-  // Mock
-  state.countryStates = [
-    {
-      name: 'Espírito Santo',
-      key: 'es',
-    },
-    {
-      name: 'São Paulo',
-      key: 'sp',
-    },
-    {
-      name: 'Rio de Janeiro',
-      key: 'rj',
-    },
-    {
-      name: 'Rio Grande do Sul',
-      key: 'rs',
-    },
-    {
-      name: 'Mato Grosso do Sul',
-      key: 'ms',
-    },
-    {
-      name: 'Acre',
-      key: 'ac',
-    },
-  ]
+const updateStatesList = async () => {
+  const { data } = await getStateList()
+
+  state.countryStates = (data.value as string[]).map(
+    (state): CheckboxFormat => {
+      return {
+        name: state,
+        key: state,
+      }
+    }
+  )
+}
+
+onBeforeMount(async () => {
+  updateStatesList()
 })
 
 const emit = defineEmits<{
@@ -92,6 +82,7 @@ const emit = defineEmits<{
       </li>
     </ul>
     <button
+      v-if="state.countryStates.length > SHORT_COUNTRY_LIST_NUM"
       class="state-filter__show-more"
       @click="toggleVisibleStates"
       data-testid="state-filter-show-more"
@@ -134,6 +125,7 @@ const emit = defineEmits<{
     font-size: $text-base;
     line-height: $leading-4;
     margin-left: $spacing-2;
+    text-transform: capitalize;
   }
 
   &__show-more {

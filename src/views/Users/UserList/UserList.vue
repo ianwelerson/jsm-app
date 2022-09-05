@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-import type { CountryStates, UserListResponse } from '@/types'
+import type { UserListResponse } from '@/types'
 
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
 
@@ -11,7 +11,6 @@ import PaginationNav from '@/components/PaginationNav/PaginationNav.vue'
 
 interface UserListState {
   showSearchBar: boolean
-  countryStates: CountryStates[]
   userList: UserListResponse | null
 }
 
@@ -22,7 +21,6 @@ interface UserListFilters {
 
 const state = reactive<UserListState>({
   showSearchBar: false,
-  countryStates: [],
   userList: null,
 })
 

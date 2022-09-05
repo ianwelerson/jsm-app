@@ -1,32 +1,25 @@
 import { render, fireEvent, waitFor } from '@testing-library/vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
 
-// const mockResponse = [
-//   {
-//     name: 'Espírito Santo',
-//     key: 'es',
-//   },
-//   {
-//     name: 'São Paulo',
-//     key: 'sp',
-//   },
-//   {
-//     name: 'Rio de Janeiro',
-//     key: 'rj',
-//   },
-//   {
-//     name: 'Rio Grande do Sul',
-//     key: 'rs',
-//   },
-//   {
-//     name: 'Mato Grosso do Sul',
-//     key: 'ms',
-//   },
-//   {
-//     name: 'Acre',
-//     key: 'ac',
-//   },
-// ]
+vi.mock('@/composable/useFetch', () => ({
+  useFetch: vi.fn().mockReturnValue({
+    execute: vi.fn().mockResolvedValue({
+      data: {
+        value: [
+          'acre',
+          'alagoas',
+          'amapá',
+          'amazonas',
+          'bahia',
+          'ceará',
+          'distrito federal',
+          'espírito santo',
+          'goiás',
+        ],
+      },
+    }),
+  }),
+}))
 
 describe('StateFilter', () => {
   it('should emit an update with the list of selected elements', async () => {
@@ -39,20 +32,22 @@ describe('StateFilter', () => {
     })
 
     await waitFor(() => {
-      expect(emitted('update')[0]).toEqual([['es']])
+      expect(emitted('update')[0]).toEqual([['acre']])
     })
   })
 
   it('should show more items when user clicks on show more button', async () => {
     const { getByTestId, getByText } = render(StateFilter)
 
-    getByText('Ver todos')
+    await waitFor(() => {
+      getByText('Ver todos')
+    })
 
     const stateFilter = getByTestId('state-filter-show-more')
     fireEvent.click(stateFilter)
 
     await waitFor(() => {
-      getByText('Acre')
+      getByText('acre')
       getByText('Ver menos')
     })
   })
