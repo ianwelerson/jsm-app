@@ -11,7 +11,7 @@ interface StateFilterState {
   selectedState: string[]
 }
 
-const { execute: getStateList } = useFetch('/users/states')
+const { execute: getStateList, isLoading } = useFetch('/users/states')
 
 const state = reactive<StateFilterState>({
   shortStateList: true,
@@ -62,27 +62,38 @@ const emit = defineEmits<{
   <div class="state-filter">
     <p class="state-filter__title">Por Estado</p>
     <ul class="state-filter__list">
-      <li
-        v-for="stateData in countryStateList"
-        :key="stateData.key"
-        class="state-filter__item"
-      >
-        <input
-          data-testid="state-filter-input"
-          type="checkbox"
-          :name="stateData.key"
-          :value="stateData.key"
-          :id="`${stateData.key}-checkbox`"
-          v-model="state.selectedState"
-          class="state-filter__input"
-        />
-        <label :for="`${stateData.key}-checkbox`" class="state-filter__label">{{
-          stateData.name
-        }}</label>
-      </li>
+      <template v-if="isLoading">
+        <li
+          v-for="skeleton in 5"
+          :key="skeleton"
+          class="state-filter__item state-filter__item--skeleton"
+        ></li>
+      </template>
+      <template v-else>
+        <li
+          v-for="stateData in countryStateList"
+          :key="stateData.key"
+          class="state-filter__item"
+        >
+          <input
+            data-testid="state-filter-input"
+            type="checkbox"
+            :name="stateData.key"
+            :value="stateData.key"
+            :id="`${stateData.key}-checkbox`"
+            v-model="state.selectedState"
+            class="state-filter__input"
+          />
+          <label
+            :for="`${stateData.key}-checkbox`"
+            class="state-filter__label"
+            >{{ stateData.name }}</label
+          >
+        </li>
+      </template>
     </ul>
     <button
-      v-if="state.countryStates.length > SHORT_COUNTRY_LIST_NUM"
+      v-if="state.countryStates.length > SHORT_COUNTRY_LIST_NUM && !isLoading"
       class="state-filter__show-more"
       @click="toggleVisibleStates"
       data-testid="state-filter-show-more"
@@ -111,6 +122,13 @@ const emit = defineEmits<{
 
   &__item {
     display: flex;
+
+    &--skeleton {
+      height: 20px;
+      width: 100%;
+
+      @include skeleton;
+    }
 
     &:not(:first-child) {
       margin-top: $spacing-1;
