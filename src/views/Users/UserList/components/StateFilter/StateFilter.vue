@@ -11,7 +11,7 @@ interface StateFilterState {
   selectedState: string[]
 }
 
-const { execute: getStateList } = useFetch('/states')
+const { execute: getStateList } = useFetch('/users/states')
 
 const state = reactive<StateFilterState>({
   shortStateList: true,

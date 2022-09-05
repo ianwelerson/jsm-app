@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { onBeforeMount, reactive, watch } from 'vue'
 import type { UserListResponse } from '@/types'
+import { useFetch } from '@/composable/useFetch'
 
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
 
@@ -8,6 +9,8 @@ import UserCard from '@/views/Users/UserList/components/UserCard/UserCard.vue'
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
 import PaginationNav from '@/components/PaginationNav/PaginationNav.vue'
+
+const REQUEST_URL = '/users'
 
 interface UserListState {
   showSearchBar: boolean
@@ -17,7 +20,14 @@ interface UserListState {
 interface UserListFilters {
   state: string[]
   query: string
+  sort: string
 }
+
+interface SortData {
+  [key: string]: string
+}
+
+const { execute: getUserList } = useFetch(REQUEST_URL)
 
 const state = reactive<UserListState>({
   showSearchBar: false,
@@ -27,6 +37,7 @@ const state = reactive<UserListState>({
 const filters = reactive<UserListFilters>({
   state: [],
   query: '',
+  sort: '',
 })
 
 const handleSearchUpdate = (query: string) => {
@@ -38,70 +49,102 @@ const handleStateFilterUpdate = (state: string[]) => {
 }
 
 const handleSortUpdate = (event: Event) => {
-  console.log((event.target as HTMLSelectElement)?.value)
+  filters.sort = (event.target as HTMLSelectElement)?.value
 }
 
 const handlePaginationUpdate = (page: number) => {
-  console.log(`navegate to: ${page}`)
+  updateUserList(page)
 }
 
-onMounted(() => {
+const updateUserList = async (page?: number) => {
+  const params: SortData = {}
+
+  if (page) {
+    params['page'] = page.toString()
+  }
+
+  if (filters.state.length) {
+    params['state'] = filters.state.toString()
+  }
+
+  if (filters.query) {
+    params['query'] = filters.query
+  }
+
+  if (filters.sort) {
+    params['sort'] = filters.sort
+  }
+
+  const { data } = await getUserList(
+    `${REQUEST_URL}?${new URLSearchParams(params)}`
+  )
+
+  state.userList = data.value as UserListResponse
+}
+
+watch(filters, () => {
+  console.log('aaa')
+  updateUserList()
+})
+
+onBeforeMount(() => {
   // avoid error when trying to load search with teleport before header is loaded
   state.showSearchBar = true
 
-  // Mock
-  state.userList = {
-    users: [
-      {
-        id: 'alejandra.rodrigues',
-        picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-        name: 'alejandra rodrigues',
-        street: '3833 rua santa catarina',
-        city: 'umuarama',
-        state: 'santa catarina',
-        postcode: 43646,
-      },
-      {
-        id: 'alejandra.rodrigues',
-        picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-        name: 'alejandra rodrigues',
-        street: '3833 rua santa catarina',
-        city: 'umuarama',
-        state: 'santa catarina',
-        postcode: 43646,
-      },
-      {
-        id: 'alejandra.rodrigues',
-        picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-        name: 'alejandra rodrigues',
-        street: '3833 rua santa catarina',
-        city: 'umuarama',
-        state: 'santa catarina',
-        postcode: 43646,
-      },
-      {
-        id: 'alejandra.rodrigues',
-        picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-        name: 'alejandra rodrigues',
-        street: '3833 rua santa catarina',
-        city: 'umuarama',
-        state: 'santa catarina',
-        postcode: 43646,
-      },
-      {
-        id: 'alejandra.rodrigues',
-        picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-        name: 'alejandra rodrigues',
-        street: '3833 rua santa catarina',
-        city: 'umuarama',
-        state: 'santa catarina',
-        postcode: 43646,
-      },
-    ],
-    totalPages: 22,
-    totalUsers: 90,
-    currentPage: 2,
-  }
+  updateUserList()
+  // // Mock
+  // state.userList = {
+  //   users: [
+  //     {
+  //       id: 'alejandra.rodrigues',
+  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
+  //       name: 'alejandra rodrigues',
+  //       street: '3833 rua santa catarina',
+  //       city: 'umuarama',
+  //       state: 'santa catarina',
+  //       postcode: 43646,
+  //     },
+  //     {
+  //       id: 'alejandra.rodrigues',
+  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
+  //       name: 'alejandra rodrigues',
+  //       street: '3833 rua santa catarina',
+  //       city: 'umuarama',
+  //       state: 'santa catarina',
+  //       postcode: 43646,
+  //     },
+  //     {
+  //       id: 'alejandra.rodrigues',
+  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
+  //       name: 'alejandra rodrigues',
+  //       street: '3833 rua santa catarina',
+  //       city: 'umuarama',
+  //       state: 'santa catarina',
+  //       postcode: 43646,
+  //     },
+  //     {
+  //       id: 'alejandra.rodrigues',
+  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
+  //       name: 'alejandra rodrigues',
+  //       street: '3833 rua santa catarina',
+  //       city: 'umuarama',
+  //       state: 'santa catarina',
+  //       postcode: 43646,
+  //     },
+  //     {
+  //       id: 'alejandra.rodrigues',
+  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
+  //       name: 'alejandra rodrigues',
+  //       street: '3833 rua santa catarina',
+  //       city: 'umuarama',
+  //       state: 'santa catarina',
+  //       postcode: 43646,
+  //     },
+  //   ],
+  //   totalPages: 22,
+  //   totalUsers: 90,
+  //   currentPage: 2,
+  // }
 })
 </script>
 
