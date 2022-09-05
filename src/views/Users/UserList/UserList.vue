@@ -83,7 +83,6 @@ const updateUserList = async (page?: number) => {
 }
 
 watch(filters, () => {
-  console.log('aaa')
   updateUserList()
 })
 
@@ -92,59 +91,6 @@ onBeforeMount(() => {
   state.showSearchBar = true
 
   updateUserList()
-  // // Mock
-  // state.userList = {
-  //   users: [
-  //     {
-  //       id: 'alejandra.rodrigues',
-  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-  //       name: 'alejandra rodrigues',
-  //       street: '3833 rua santa catarina',
-  //       city: 'umuarama',
-  //       state: 'santa catarina',
-  //       postcode: 43646,
-  //     },
-  //     {
-  //       id: 'alejandra.rodrigues',
-  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-  //       name: 'alejandra rodrigues',
-  //       street: '3833 rua santa catarina',
-  //       city: 'umuarama',
-  //       state: 'santa catarina',
-  //       postcode: 43646,
-  //     },
-  //     {
-  //       id: 'alejandra.rodrigues',
-  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-  //       name: 'alejandra rodrigues',
-  //       street: '3833 rua santa catarina',
-  //       city: 'umuarama',
-  //       state: 'santa catarina',
-  //       postcode: 43646,
-  //     },
-  //     {
-  //       id: 'alejandra.rodrigues',
-  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-  //       name: 'alejandra rodrigues',
-  //       street: '3833 rua santa catarina',
-  //       city: 'umuarama',
-  //       state: 'santa catarina',
-  //       postcode: 43646,
-  //     },
-  //     {
-  //       id: 'alejandra.rodrigues',
-  //       picture: 'https://randomuser.me/api/portraits/med/women/18.jpg',
-  //       name: 'alejandra rodrigues',
-  //       street: '3833 rua santa catarina',
-  //       city: 'umuarama',
-  //       state: 'santa catarina',
-  //       postcode: 43646,
-  //     },
-  //   ],
-  //   totalPages: 22,
-  //   totalUsers: 90,
-  //   currentPage: 2,
-  // }
 })
 </script>
 
