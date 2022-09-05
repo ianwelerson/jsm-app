@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, reactive, watch } from 'vue'
+import { onBeforeMount, onMounted, reactive, watch } from 'vue'
 import type { UserListResponse } from '@/types'
 import { useFetch } from '@/composable/useFetch'
 
@@ -87,10 +87,12 @@ watch(filters, () => {
 })
 
 onBeforeMount(() => {
+  updateUserList()
+})
+
+onMounted(() => {
   // avoid error when trying to load search with teleport before header is loaded
   state.showSearchBar = true
-
-  updateUserList()
 })
 </script>
 
@@ -131,21 +133,23 @@ onBeforeMount(() => {
             </div>
           </section>
           <section class="main-content__bottom">
-            <div
-              v-for="user in state.userList?.users"
-              :key="user.id"
-              class="main-content__user-card"
-            >
-              <UserCard
-                :id="user.id"
-                :picture="user.picture"
-                :name="user.name"
-                :street="user.street"
-                :city="user.city"
-                :state="user.state"
-                :postcode="user.postcode"
-              />
-            </div>
+            <TransitionGroup name="fade" mode="out-in">
+              <div
+                v-for="user in state.userList?.users"
+                :key="user.id"
+                class="main-content__user-card"
+              >
+                <UserCard
+                  :id="user.id"
+                  :picture="user.picture"
+                  :name="user.name"
+                  :street="user.street"
+                  :city="user.city"
+                  :state="user.state"
+                  :postcode="user.postcode"
+                />
+              </div>
+            </TransitionGroup>
           </section>
           <section class="main-content__pagination">
             <PaginationNav
