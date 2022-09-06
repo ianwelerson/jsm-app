@@ -62,6 +62,12 @@ You **should** develop:
 
 This project was made using Vue 3 + TypeScript + Vite + Vitest + Pinia.
 
+### Env
+
+You will need to configure the env for API URL, you can use the production version jsm-bff.herokuapp.com/v1/ or run locally the the [BFF project](https://github.com/ianwelerson/jsm-bff). For any of these options, you will need to create a `.env` file with env key `VITE_API_URL`. You can see an example in the file `.env.example`
+
+### Install dependecies
+
 ```sh
 npm install
 ```
