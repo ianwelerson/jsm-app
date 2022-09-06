@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, reactive, watch } from 'vue'
+import { computed, onBeforeMount, onMounted, reactive, watch } from 'vue'
 import type { UserListResponse, UserSortOptions } from '@/types'
 import { useFetch } from '@/composable/useFetch'
 import router from '@/router'
@@ -143,6 +143,10 @@ const toggleMenu = (event: MouseEvent | null, forceState?: MenuState) => {
   state.menuStatus = state.menuStatus === 'opened' ? 'closed' : 'opened'
 }
 
+const hasContent = computed(() => {
+  return !!state.userList?.users.length
+})
+
 watch(filters, () => {
   updateUserList()
 })
@@ -199,25 +203,33 @@ onMounted(() => {
                   </div>
                 </template>
                 <template v-else>
-                  <div
-                    v-for="user in state.userList?.users"
-                    :key="user.id"
-                    class="main-content__user-card"
-                  >
-                    <UserCard
-                      :id="user.id"
-                      :picture="user.picture"
-                      :name="user.name"
-                      :street="user.street"
-                      :city="user.city"
-                      :state="user.state"
-                      :postcode="user.postcode"
-                    />
-                  </div>
+                  <template v-if="hasContent">
+                    <div
+                      v-for="user in state.userList?.users"
+                      :key="user.id"
+                      class="main-content__user-card"
+                    >
+                      <UserCard
+                        :id="user.id"
+                        :picture="user.picture"
+                        :name="user.name"
+                        :street="user.street"
+                        :city="user.city"
+                        :state="user.state"
+                        :postcode="user.postcode"
+                      />
+                    </div>
+                  </template>
+                  <p v-else class="main-content__no-user-found">
+                    Nenhum conteúdo encontrado
+                  </p>
                 </template>
               </TransitionGroup>
             </section>
-            <section v-if="!isLoading" class="main-content__pagination">
+            <section
+              v-if="!isLoading && hasContent"
+              class="main-content__pagination"
+            >
               <PaginationNav
                 :max="state.userList?.totalPages ?? 0"
                 :current="state.userList?.currentPage ?? 0"
@@ -357,6 +369,14 @@ onMounted(() => {
     @include screen('lg') {
       width: calc(33.33% - $spacing-3);
     }
+  }
+
+  &__no-user-found {
+    font-weight: $font-bold;
+    font-size: $text-lg;
+    margin-top: $spacing-3;
+    text-align: center;
+    width: 100%;
   }
 
   .result-counter {
