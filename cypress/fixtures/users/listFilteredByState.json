@@ -1,0 +1,70 @@
+{
+  "users":[
+     {
+        "id":"amadeu.ramos",
+        "picture":"https://randomuser.me/api/portraits/med/men/71.jpg",
+        "name":"amadeu ramos",
+        "street":"5564 rua santa luzia ",
+        "city":"várzea paulista",
+        "state":"acre",
+        "postcode":30431
+     },
+     {
+        "id":"deolindo.dacunha",
+        "picture":"https://randomuser.me/api/portraits/med/men/6.jpg",
+        "name":"deolindo da cunha",
+        "street":"2510 rua dezenove de outubro",
+        "city":"caxias do sul",
+        "state":"acre",
+        "postcode":63115
+     },
+     {
+        "id":"higino.lopes",
+        "picture":"https://randomuser.me/api/portraits/med/men/51.jpg",
+        "name":"higino lopes",
+        "street":"644 rua santa luzia ",
+        "city":"pinhais",
+        "state":"acre",
+        "postcode":12193
+     },
+     {
+        "id":"joselaine.darocha",
+        "picture":"https://randomuser.me/api/portraits/med/women/6.jpg",
+        "name":"joselaine da rocha",
+        "street":"567 rua maranhão ",
+        "city":"cabo de santo agostinho",
+        "state":"acre",
+        "postcode":93765
+     },
+     {
+        "id":"josini.nascimento",
+        "picture":"https://randomuser.me/api/portraits/med/women/50.jpg",
+        "name":"josini nascimento",
+        "street":"8824 rua santa catarina ",
+        "city":"caxias",
+        "state":"acre",
+        "postcode":43167
+     },
+     {
+        "id":"noara.monteiro",
+        "picture":"https://randomuser.me/api/portraits/med/women/7.jpg",
+        "name":"noara monteiro",
+        "street":"99 rua duque de caxias ",
+        "city":"uruguaiana",
+        "state":"acre",
+        "postcode":98409
+     },
+     {
+        "id":"quevin.darosa",
+        "picture":"https://randomuser.me/api/portraits/med/men/33.jpg",
+        "name":"quévin da rosa",
+        "street":"1871 rua são sebastiao ",
+        "city":"santana",
+        "state":"acre",
+        "postcode":68988
+     }
+  ],
+  "totalPages":1,
+  "totalUsers":7,
+  "currentPage":1
+}

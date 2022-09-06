@@ -1,0 +1,88 @@
+{
+  "users":[
+     {
+        "id":"alejandra.rodrigues",
+        "picture":"https://randomuser.me/api/portraits/med/women/18.jpg",
+        "name":"alejandra rodrigues",
+        "street":"3833 rua santa catarina ",
+        "city":"umuarama",
+        "state":"santa catarina",
+        "postcode":43646
+     },
+     {
+        "id":"armando.dacruz",
+        "picture":"https://randomuser.me/api/portraits/med/men/54.jpg",
+        "name":"armando da cruz",
+        "street":"7032 rua santa luzia ",
+        "city":"natal",
+        "state":"roraima",
+        "postcode":36455
+     },
+     {
+        "id":"alda.barbosa",
+        "picture":"https://randomuser.me/api/portraits/med/women/92.jpg",
+        "name":"alda barbosa",
+        "street":"3987 rua são luiz ",
+        "city":"bento gonçalves",
+        "state":"paraná",
+        "postcode":37196
+     },
+     {
+        "id":"marilene.darocha",
+        "picture":"https://randomuser.me/api/portraits/med/women/31.jpg",
+        "name":"marilene da rocha",
+        "street":"5632 rua dois",
+        "city":"eunápolis",
+        "state":"tocantins",
+        "postcode":98976
+     },
+     {
+        "id":"ariela.nunes",
+        "picture":"https://randomuser.me/api/portraits/med/women/46.jpg",
+        "name":"ariela nunes",
+        "street":"1148 rua santa luzia ",
+        "city":"coronel fabriciano",
+        "state":"goiás",
+        "postcode":78197
+     },
+     {
+        "id":"eleuterio.almeida",
+        "picture":"https://randomuser.me/api/portraits/med/men/61.jpg",
+        "name":"eleutério almeida",
+        "street":"8578 rua amazonas ",
+        "city":"balneário camboriú",
+        "state":"tocantins",
+        "postcode":28829
+     },
+     {
+        "id":"melania.jesus",
+        "picture":"https://randomuser.me/api/portraits/med/women/39.jpg",
+        "name":"melânia jesus",
+        "street":"8454 rua quatro",
+        "city":"itaguaí",
+        "state":"espírito santo",
+        "postcode":68256
+     },
+     {
+        "id":"apolo.nunes",
+        "picture":"https://randomuser.me/api/portraits/med/men/72.jpg",
+        "name":"apolo nunes",
+        "street":"8719 rua treze ",
+        "city":"nova iguaçu",
+        "state":"santa catarina",
+        "postcode":45653
+     },
+     {
+        "id":"gilda.pires",
+        "picture":"https://randomuser.me/api/portraits/med/women/33.jpg",
+        "name":"gilda pires",
+        "street":"9934 rua santa catarina ",
+        "city":"cubatão",
+        "state":"minas gerais",
+        "postcode":56209
+     }
+  ],
+  "totalPages":23,
+  "totalUsers":200,
+  "currentPage":1
+}

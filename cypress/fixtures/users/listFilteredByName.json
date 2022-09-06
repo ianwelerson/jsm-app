@@ -1,0 +1,88 @@
+{
+  "users":[
+     {
+        "id":"alexandra.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/women/48.jpg",
+        "name":"alexandra duarte",
+        "street":"6434 rua são francisco ",
+        "city":"varginha",
+        "state":"pernambuco",
+        "postcode":28403
+     },
+     {
+        "id":"alexandrino.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/men/83.jpg",
+        "name":"alexandrino duarte",
+        "street":"2135 rua quatro",
+        "city":"campinas",
+        "state":"rio de janeiro",
+        "postcode":36556
+     },
+     {
+        "id":"baldomero.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/men/35.jpg",
+        "name":"baldomero duarte",
+        "street":"6405 avenida da legalidade",
+        "city":"são mateus",
+        "state":"distrito federal",
+        "postcode":93854
+     },
+     {
+        "id":"cenilda.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/women/32.jpg",
+        "name":"cenilda duarte",
+        "street":"6075 beco dos namorados",
+        "city":"santo andré",
+        "state":"rio de janeiro",
+        "postcode":39389
+     },
+     {
+        "id":"cirleni.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/women/78.jpg",
+        "name":"cirleni duarte",
+        "street":"8851 rua josé bonifácio ",
+        "city":"cabo frio",
+        "state":"minas gerais",
+        "postcode":62799
+     },
+     {
+        "id":"cloe.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/women/20.jpg",
+        "name":"cloé duarte",
+        "street":"6456 rua sete de setembro ",
+        "city":"itapecerica da serra",
+        "state":"piauí",
+        "postcode":37963
+     },
+     {
+        "id":"dulia.carvalho",
+        "picture":"https://randomuser.me/api/portraits/med/women/46.jpg",
+        "name":"dúlia carvalho",
+        "street":"8479 rua santa maria ",
+        "city":"ilhéus",
+        "state":"pernambuco",
+        "postcode":90379
+     },
+     {
+        "id":"eduardo.rocha",
+        "picture":"https://randomuser.me/api/portraits/med/men/10.jpg",
+        "name":"eduardo rocha",
+        "street":"8440 avenida vinícius de morais",
+        "city":"sobral",
+        "state":"são paulo",
+        "postcode":94925
+     },
+     {
+        "id":"indra.duarte",
+        "picture":"https://randomuser.me/api/portraits/med/men/66.jpg",
+        "name":"indra duarte",
+        "street":"3275 rua belo horizonte ",
+        "city":"cotia",
+        "state":"rio de janeiro",
+        "postcode":21886
+     }
+  ],
+  "totalPages":2,
+  "totalUsers":10,
+  "currentPage":1
+}

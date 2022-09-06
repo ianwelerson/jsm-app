@@ -1,0 +1,88 @@
+{
+  "users":[
+     {
+        "id":"abraim.dacosta",
+        "picture":"https://randomuser.me/api/portraits/med/men/87.jpg",
+        "name":"abraim da costa",
+        "street":"1315 avenida d. pedro ii",
+        "city":"taubaté",
+        "state":"minas gerais",
+        "postcode":66230
+     },
+     {
+        "id":"ada.melo",
+        "picture":"https://randomuser.me/api/portraits/med/women/83.jpg",
+        "name":"ada melo",
+        "street":"7975 rua santo antônio ",
+        "city":"bacabal",
+        "state":"bahia",
+        "postcode":13490
+     },
+     {
+        "id":"adelindo.porto",
+        "picture":"https://randomuser.me/api/portraits/med/men/97.jpg",
+        "name":"adelindo porto",
+        "street":"8611 rua são joão ",
+        "city":"trindade",
+        "state":"amapá",
+        "postcode":31707
+     },
+     {
+        "id":"adruzilo.fogaca",
+        "picture":"https://randomuser.me/api/portraits/med/men/63.jpg",
+        "name":"adruzilo fogaça",
+        "street":"8717 rua quatro",
+        "city":"sete lagoas",
+        "state":"bahia",
+        "postcode":42533
+     },
+     {
+        "id":"aderito.dacosta",
+        "picture":"https://randomuser.me/api/portraits/med/men/18.jpg",
+        "name":"adérito da costa",
+        "street":"6167 rua amazonas ",
+        "city":"volta redonda",
+        "state":"piauí",
+        "postcode":96964
+     },
+     {
+        "id":"aderito.damota",
+        "picture":"https://randomuser.me/api/portraits/med/men/31.jpg",
+        "name":"adérito da mota",
+        "street":"346 avenida d. pedro ii",
+        "city":"aparecida de goiânia",
+        "state":"ceará",
+        "postcode":85870
+     },
+     {
+        "id":"afonsino.campos",
+        "picture":"https://randomuser.me/api/portraits/med/men/86.jpg",
+        "name":"afonsino campos",
+        "street":"6031 rua principal",
+        "city":"queimados",
+        "state":"minas gerais",
+        "postcode":58553
+     },
+     {
+        "id":"ainhoa.souza",
+        "picture":"https://randomuser.me/api/portraits/med/women/33.jpg",
+        "name":"ainhoa souza",
+        "street":"933 rua vinte de setembro",
+        "city":"campinas",
+        "state":"maranhão",
+        "postcode":22913
+     },
+     {
+        "id":"albenise.sales",
+        "picture":"https://randomuser.me/api/portraits/med/women/76.jpg",
+        "name":"albenise sales",
+        "street":"8361 rua dezessete ",
+        "city":"três lagoas",
+        "state":"minas gerais",
+        "postcode":24453
+     }
+  ],
+  "totalPages":23,
+  "totalUsers":200,
+  "currentPage":1
+}
