@@ -3,7 +3,7 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 import type { AxiosRequestConfig } from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://jsm-bff.herokuapp.com/v1/',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
