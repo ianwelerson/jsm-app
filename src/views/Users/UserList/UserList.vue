@@ -201,12 +201,9 @@ onMounted(() => {
         </section>
       </div>
     </div>
-    <Teleport
-      v-if="state.showSearchBar && !isLoading"
-      to="#tp-header-search-spot"
-    >
+    <Teleport v-if="state.showSearchBar" to="#tp-header-search-spot">
       <div class="page-user-list__search-bar">
-        <SearchBar @update="handleSearchUpdate" />
+        <SearchBar @update="handleSearchUpdate" :disabled="isLoading" />
       </div>
     </Teleport>
   </section>

@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { useDebouncedRef } from '@/utils'
+
 import IconBase from '../IconBase/IconBase.vue'
+
+export interface SearchBarProps {
+  disabled?: boolean
+}
+
+const props = defineProps<SearchBarProps>()
 
 const searchTerm = useDebouncedRef('', 600)
 
@@ -32,6 +39,7 @@ const emit = defineEmits<{
           name="search-term"
           placeholder="Buscar aqui"
           type="text"
+          :disabled="props.disabled"
           v-model="searchTerm"
         />
       </label>
