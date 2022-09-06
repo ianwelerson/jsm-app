@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`PageFooter > should match the snapshot 1`] = `
+"<footer class=\\"page-footer\\" data-v-ba5684a8=\\"\\">
+  <div class=\\"page-footer__content\\" data-v-ba5684a8=\\"\\"><img src=\\"/src/assets/images/logo-white.png\\" alt=\\"Juntos Somos Mais\\" class=\\"page-footer__logo\\" height=\\"48\\" width=\\"176\\" data-v-ba5684a8=\\"\\">
+    <p class=\\"page-footer__company\\" data-v-ba5684a8=\\"\\">Juntos Somos Mais Fidelização S.A.</p>
+    <div class=\\"social-networks\\" data-v-ba5684a8=\\"\\">
+      <p class=\\"social-networks__title\\" data-v-ba5684a8=\\"\\">Siga-nos nas redes sociais:</p>
+      <div class=\\"social-networks__button-group\\" data-v-ba5684a8=\\"\\"><a href=\\"https://www.facebook.com/juntossomosmais/\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\" class=\\"social-networks__button\\" data-v-ba5684a8=\\"\\">
+          <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-ba5684a8=\\"\\">
+            <!---->
+          </div>
+        </a><a href=\\"https://www.linkedin.com/company/juntos-somos-mais/\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\" class=\\"social-networks__button\\" data-v-ba5684a8=\\"\\">
+          <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-ba5684a8=\\"\\">
+            <!---->
+          </div>
+        </a><a href=\\"https://www.instagram.com/juntossomosmais/\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\" class=\\"social-networks__button\\" data-v-ba5684a8=\\"\\">
+          <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-ba5684a8=\\"\\">
+            <!---->
+          </div>
+        </a></div>
+    </div>
+  </div>
+</footer>"
+`;

@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`StateFilter > should match the snapshot 1`] = `
+"<div class=\\"state-filter-component\\" data-v-d19c9cda=\\"\\">
+  <p class=\\"state-filter-component__title\\" data-v-d19c9cda=\\"\\">Por Estado</p>
+  <ul class=\\"state-filter-component__list\\" data-v-d19c9cda=\\"\\"></ul>
+  <!--v-if-->
+</div>"
+`;

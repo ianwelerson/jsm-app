@@ -1,0 +1,39 @@
+{
+   "id":"abraim.dacosta",
+   "gender":"male",
+   "name":{
+      "title":"mr",
+      "first":"abraim",
+      "last":"da costa"
+   },
+   "location":{
+      "street":"1315 avenida d. pedro ii",
+      "city":"taubaté",
+      "state":"minas gerais",
+      "postcode":66230,
+      "coordinates":{
+         "latitude":"75.1095",
+         "longitude":"64.5632"
+      },
+      "timezone":{
+         "offset":"0:00",
+         "description":"Western Europe Time, London, Lisbon, Casablanca"
+      }
+   },
+   "email":"abraim.dacosta@example.com",
+   "dob":{
+      "date":"1993-07-26T10:27:51Z",
+      "age":25
+   },
+   "registered":{
+      "date":"2012-05-15T07:56:01Z",
+      "age":6
+   },
+   "phone":"(83) 9321-8672",
+   "cell":"(34) 2983-2259",
+   "picture":{
+      "large":"https://randomuser.me/api/portraits/men/87.jpg",
+      "medium":"https://randomuser.me/api/portraits/med/men/87.jpg",
+      "thumbnail":"https://randomuser.me/api/portraits/thumb/men/87.jpg"
+   }
+}

@@ -1,0 +1,88 @@
+{
+   "users":[
+      {
+         "id":"denice.ribeiro",
+         "picture":"https://randomuser.me/api/portraits/med/women/84.jpg",
+         "name":"denice ribeiro",
+         "street":"969 rua da paz ",
+         "city":"alagoinhas",
+         "state":"espírito santo",
+         "postcode":57733
+      },
+      {
+         "id":"amavel.ramos",
+         "picture":"https://randomuser.me/api/portraits/med/men/34.jpg",
+         "name":"amável ramos",
+         "street":"7633 rua joão xxiii",
+         "city":"alvorada",
+         "state":"sergipe",
+         "postcode":70974
+      },
+      {
+         "id":"melchior.dacunha",
+         "picture":"https://randomuser.me/api/portraits/med/men/98.jpg",
+         "name":"melchior da cunha",
+         "street":"6165 rua paraná ",
+         "city":"angra dos reis",
+         "state":"sergipe",
+         "postcode":43065
+      },
+      {
+         "id":"aderito.damota",
+         "picture":"https://randomuser.me/api/portraits/med/men/31.jpg",
+         "name":"adérito da mota",
+         "street":"346 avenida d. pedro ii",
+         "city":"aparecida de goiânia",
+         "state":"ceará",
+         "postcode":85870
+      },
+      {
+         "id":"otilia.nogueira",
+         "picture":"https://randomuser.me/api/portraits/med/women/61.jpg",
+         "name":"otília nogueira",
+         "street":"7249 rua santa luzia ",
+         "city":"aracaju",
+         "state":"mato grosso",
+         "postcode":25734
+      },
+      {
+         "id":"rui.goncalves",
+         "picture":"https://randomuser.me/api/portraits/med/men/86.jpg",
+         "name":"rui gonçalves",
+         "street":"3280 rua da saudade",
+         "city":"araguaína",
+         "state":"rio de janeiro",
+         "postcode":65035
+      },
+      {
+         "id":"orlanda.damota",
+         "picture":"https://randomuser.me/api/portraits/med/women/39.jpg",
+         "name":"orlanda da mota",
+         "street":"4377 rua paraná ",
+         "city":"arapongas",
+         "state":"minas gerais",
+         "postcode":47127
+      },
+      {
+         "id":"diego.campos",
+         "picture":"https://randomuser.me/api/portraits/med/men/36.jpg",
+         "name":"diego campos",
+         "street":"3616 rua são jorge ",
+         "city":"araras",
+         "state":"amazonas",
+         "postcode":21094
+      },
+      {
+         "id":"aristoteles.nunes",
+         "picture":"https://randomuser.me/api/portraits/med/men/63.jpg",
+         "name":"aristóteles nunes",
+         "street":"4133 rua são josé ",
+         "city":"araras",
+         "state":"rio grande do sul",
+         "postcode":19688
+      }
+   ],
+   "totalPages":23,
+   "totalUsers":200,
+   "currentPage":1
+}
