@@ -327,6 +327,15 @@ onMounted(() => {
     }
   }
 
+  &__sidebar {
+    display: none;
+
+    @include screen('lg') {
+      display: flex;
+      width: 250px;
+    }
+  }
+
   &__mobile-menu {
     @include side-menu;
 
@@ -436,7 +445,6 @@ onMounted(() => {
     border: $border-size-base solid $gray-400;
     margin-top: 0;
     padding: $spacing-6;
-    width: 250px;
   }
 }
 
