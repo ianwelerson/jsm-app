@@ -54,7 +54,7 @@ onBeforeMount(() => {
       v-if="!state.userData || isLoading"
       class="page-user-details__content page-user-details__content--skeleton"
     >
-      <div class="profile-card">
+      <section class="profile-card">
         <div class="profile-card__content">
           <div class="profile-card__picture">
             <div
@@ -64,8 +64,8 @@ onBeforeMount(() => {
           <div class="profile-card__block profile-card__block--skeleton"></div>
           <div class="profile-card__block profile-card__block--skeleton"></div>
         </div>
-      </div>
-      <div class="aditional-info">
+      </section>
+      <section class="aditional-info">
         <div class="aditional-info__content">
           <div class="info-block">
             <h3 class="info-block__title">Contato</h3>
@@ -79,7 +79,7 @@ onBeforeMount(() => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
     <!-- Real content block -->
     <div v-else class="page-user-details__content">

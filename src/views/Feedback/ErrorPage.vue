@@ -10,7 +10,7 @@ const errorType = computed(() => {
 </script>
 
 <template>
-  <div class="feedback-page">
+  <section class="feedback-page">
     <div class="feedback-page__content">
       <template v-if="errorType === 404">
         <h1 class="feedback-page__title">404</h1>
@@ -28,7 +28,7 @@ const errorType = computed(() => {
         >Ir para página inicial</RouterLink
       >
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>

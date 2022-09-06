@@ -40,7 +40,7 @@ const props = defineProps<BaseSelectProps>()
   font-size: $text-sm;
   line-height: $leading-2;
   outline: none;
-  padding: $spacing-1 $spacing-2 $spacing-1 0;
+  padding-right: $spacing-2;
   position: relative;
   width: 100%;
 }

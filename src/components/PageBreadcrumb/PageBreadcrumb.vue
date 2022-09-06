@@ -38,7 +38,7 @@ const breadcrumbData = computed(() => {
 </script>
 
 <template>
-  <section class="page-breadcrumb">
+  <section v-if="breadcrumbData.total > 1" class="page-breadcrumb">
     <ul class="page-breadcrumb__content">
       <RouterLink
         v-for="(page, index) in breadcrumbData.pages"

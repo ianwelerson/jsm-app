@@ -148,7 +148,7 @@ onMounted(() => {
               Exibindo {{ state.userList?.users.length ?? 0 }} de
               {{ state.userList?.totalUsers || 0 }} itens
             </p>
-            <div v-if="!isLoading" class="main-content__sort">
+            <div class="main-content__sort">
               <div class="sort-block">
                 <p class="sort-block__text">Ordernar por:</p>
                 <div class="sort-block__field">
@@ -156,6 +156,7 @@ onMounted(() => {
                     @change="handleSortUpdate"
                     name="sort-users"
                     :options="SORT_OPTIONS"
+                    :disabled="isLoading"
                   />
                 </div>
               </div>
@@ -220,8 +221,9 @@ onMounted(() => {
   }
 
   &__content {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
+    margin-top: $spacing-9;
 
     @include screen('lg') {
       align-items: flex-start;
