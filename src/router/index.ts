@@ -37,9 +37,21 @@ const router = createRouter({
       ],
     },
     {
+      path: '/error',
+      component: () => import('@/layouts/DefaultLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'errorPage',
+          alias: ['/404'],
+          component: () => import('@/views/Feedback/ErrorPage.vue'),
+        },
+      ],
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: {
-        name: 'userList',
+        name: 'errorPage',
       },
     },
   ],

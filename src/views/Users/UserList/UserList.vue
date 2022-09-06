@@ -2,6 +2,7 @@
 import { onBeforeMount, onMounted, reactive, watch } from 'vue'
 import type { UserListResponse, UserSortOptions } from '@/types'
 import { useFetch } from '@/composable/useFetch'
+import router from '@/router'
 
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
 
@@ -55,7 +56,11 @@ const SORT_OPTIONS: UserSortOptions[] = [
   },
 ]
 
-const { execute: getUserList, isLoading } = useFetch(REQUEST_URL)
+const {
+  execute: getUserList,
+  isLoading,
+  error: hasApiError,
+} = useFetch(REQUEST_URL)
 
 const state = reactive<UserListState>({
   showSearchBar: false,
@@ -106,6 +111,11 @@ const updateUserList = async (page?: number) => {
   const { data } = await getUserList(
     `${REQUEST_URL}?${new URLSearchParams(params)}`
   )
+
+  if (hasApiError.value) {
+    await router.push({ name: 'errorPage' })
+    return
+  }
 
   state.userList = data.value as UserListResponse
 }

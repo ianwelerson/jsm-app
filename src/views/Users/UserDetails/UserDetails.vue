@@ -16,7 +16,7 @@ const route = useRoute()
 
 const {
   execute: getUserData,
-  error: hasAPiError,
+  error: hasApiError,
   isLoading,
 } = useFetch(`/users/${route.params.userId}`)
 
@@ -33,8 +33,8 @@ const formatDate = (date: string) => {
 const loadUserData = async () => {
   const { data } = await getUserData()
 
-  if (hasAPiError.value) {
-    await router.push({ name: 'userList' })
+  if (hasApiError.value) {
+    await router.push({ path: '/404' })
 
     return
   }
