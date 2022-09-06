@@ -11,6 +11,12 @@ vi.mock('vue-router', () => ({
       matched: [
         {
           name: 'myPage',
+          meta: {
+            title: 'My Page',
+          },
+        },
+        {
+          name: 'mySecondPage',
           meta: {},
         },
       ],
@@ -34,18 +40,18 @@ vi.mock('vue-router', () => ({
 }))
 
 describe('PageBreadcrumb', () => {
-  it('should render only the Home item', async () => {
-    const { getByText, queryAllByTestId } = render(PageBreadcrumb)
+  it('should not render when has only one item', async () => {
+    const { queryAllByTestId } = render(PageBreadcrumb)
 
-    getByText('Home')
-    expect(queryAllByTestId('breadcrumb-item').length).toBe(1)
+    expect(queryAllByTestId('breadcrumb-item').length).toBe(0)
   })
 
   it('should ignore any item without title in meta', async () => {
     const { getByText, queryAllByTestId } = render(PageBreadcrumb)
 
     getByText('Home')
-    expect(queryAllByTestId('breadcrumb-item').length).toBe(1)
+    getByText('My Page')
+    expect(queryAllByTestId('breadcrumb-item').length).toBe(2)
   })
 
   it('should render all received items', async () => {
