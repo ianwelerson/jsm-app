@@ -12,7 +12,7 @@ exports[`PageHeader > should match the snapshot 1`] = `
       <div class=\\"header-menu__item\\" data-v-40300573=\\"\\">
         <div class=\\"fake-content\\" data-v-40300573=\\"\\"></div>
       </div>
-      <div class=\\"header-menu__close\\" data-v-40300573=\\"\\"><button class=\\"close-btn\\" data-testid=\\"page-header-menu-open\\" data-v-40300573=\\"\\">
+      <div class=\\"close\\" data-v-40300573=\\"\\"><button class=\\"close__btn\\" data-testid=\\"page-header-menu-open\\" data-v-40300573=\\"\\">
           <div data-testid=\\"icon-base\\" class=\\"icon-base\\" data-v-2336b232=\\"\\" data-v-40300573=\\"\\">
             <!---->
           </div>

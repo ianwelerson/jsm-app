@@ -64,3 +64,85 @@
     }
   }
 }
+
+@mixin side-menu {
+  $mobile-menu-width: negative(100vw); // Translate the menu the equivalent of his width + padding
+
+  align-items: center;
+  background: $gray-300;
+  box-shadow: 6px 0px 10px 0px rgba(155, 155, 155, 0.4);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  left: 0;
+  padding: $spacing-11 $spacing-3 $spacing-3 $spacing-3;
+  position: fixed;
+  top: 0;
+  transform: translate($mobile-menu-width);
+  min-width: 60vw;
+  z-index: 10;
+
+  &--opened {
+    animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; // Inspired in https://animista.net/
+  }
+
+  &--closed {
+    animation: slide-out-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; // Inspired in https://animista.net/
+  }
+
+  .close {
+    position: fixed;
+    top: $spacing-2;
+    right: $spacing-2;
+
+    @include screen('lg') {
+      display: none;
+    }
+
+    &__btn {
+      background-color: $transparent;
+      border: none;
+    }
+  }
+
+  // Amimations
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX($mobile-menu-width);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out-left {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX($mobile-menu-width);
+      opacity: 0;
+    }
+  }
+}
+
+@mixin background-shadow {
+  &::after {
+    position: fixed;
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: $gray-1000;
+    opacity: 0.3;
+    z-index: 0;
+
+    @include screen('lg') {
+      content: none;
+    }
+  }
+}

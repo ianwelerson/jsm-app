@@ -3,6 +3,7 @@ import { onBeforeMount, onMounted, reactive, watch } from 'vue'
 import type { UserListResponse, UserSortOptions } from '@/types'
 import { useFetch } from '@/composable/useFetch'
 import router from '@/router'
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
 
 import BaseSelect from '@/components/Base/Select/BaseSelect.vue'
 
@@ -11,12 +12,16 @@ import UserCardSkeleton from '@/views/Users/UserList/components/UserCard/UserCar
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import StateFilter from '@/views/Users/UserList/components/StateFilter/StateFilter.vue'
 import PaginationNav from '@/components/PaginationNav/PaginationNav.vue'
+import IconBase from '@/components/IconBase/IconBase.vue'
 
 const REQUEST_URL = '/users'
 
+type MenuState = 'opened' | 'closed'
+
 interface UserListState {
-  showSearchBar: boolean
+  pageLoaded: boolean
   userList: UserListResponse | null
+  menuStatus: MenuState | null
 }
 
 interface UserListFilters {
@@ -62,9 +67,13 @@ const {
   error: hasApiError,
 } = useFetch(REQUEST_URL)
 
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smallerOrEqual('lg')
+
 const state = reactive<UserListState>({
-  showSearchBar: false,
+  pageLoaded: false,
   userList: null,
+  menuStatus: null,
 })
 
 const filters = reactive<UserListFilters>({
@@ -90,6 +99,10 @@ const handlePaginationUpdate = (page: number) => {
 }
 
 const updateUserList = async (page?: number) => {
+  if (state.menuStatus === 'opened') {
+    toggleMenu(null, 'closed')
+  }
+
   const params: SortData = {}
 
   if (page) {
@@ -120,6 +133,16 @@ const updateUserList = async (page?: number) => {
   state.userList = data.value as UserListResponse
 }
 
+const toggleMenu = (event: MouseEvent | null, forceState?: MenuState) => {
+  if (forceState) {
+    state.menuStatus = forceState
+
+    return
+  }
+
+  state.menuStatus = state.menuStatus === 'opened' ? 'closed' : 'opened'
+}
+
 watch(filters, () => {
   updateUserList()
 })
@@ -129,84 +152,135 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
-  // avoid error when trying to load search with teleport before header is loaded
-  state.showSearchBar = true
+  // avoid error when trying to load teleport elements
+  state.pageLoaded = true
 })
 </script>
 
 <template>
-  <section class="page-user-list">
+  <section
+    class="page-user-list"
+    :class="{
+      'page-user-list--menu-opened': isMobile && state.menuStatus === 'opened',
+    }"
+  >
     <div class="page-user-list__wrapper">
       <h1 class="page-user-list__title">Lista de membros</h1>
       <div class="page-user-list__content">
-        <aside class="page-user-list__side-bar">
-          <StateFilter @update="handleStateFilterUpdate" />
-        </aside>
-        <section class="page-user-list__main main-content">
-          <section class="main-content__top">
-            <p class="main-content__count">
-              Exibindo {{ state.userList?.users.length ?? 0 }} de
-              {{ state.userList?.totalUsers || 0 }} itens
-            </p>
-            <div class="main-content__sort">
-              <div class="sort-block">
-                <p class="sort-block__text">Ordernar por:</p>
-                <div class="sort-block__field">
-                  <BaseSelect
-                    @change="handleSortUpdate"
-                    name="sort-users"
-                    :options="SORT_OPTIONS"
-                    :disabled="isLoading"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="main-content__bottom">
-            <TransitionGroup name="fade" mode="out-in">
-              <template v-if="isLoading">
-                <div
-                  v-for="skeleton in 9"
-                  :key="skeleton"
-                  class="main-content__user-card"
-                >
-                  <UserCardSkeleton />
-                </div>
-              </template>
-              <template v-else>
-                <div
-                  v-for="user in state.userList?.users"
-                  :key="user.id"
-                  class="main-content__user-card"
-                >
-                  <UserCard
-                    :id="user.id"
-                    :picture="user.picture"
-                    :name="user.name"
-                    :street="user.street"
-                    :city="user.city"
-                    :state="user.state"
-                    :postcode="user.postcode"
-                  />
-                </div>
-              </template>
-            </TransitionGroup>
-          </section>
-          <section v-if="!isLoading" class="main-content__pagination">
-            <PaginationNav
-              :max="state.userList?.totalPages ?? 0"
-              :current="state.userList?.currentPage ?? 0"
-              @go-to="handlePaginationUpdate"
-            />
-          </section>
+        <div
+          id="default-state-filter-spot"
+          class="page-user-list__sidebar"
+        ></div>
+        <section class="page-user-list__main">
+          <div class="main-content">
+            <section class="main-content__top">
+              <p class="result-counter">
+                Exibindo {{ state.userList?.users.length ?? 0 }} de
+                {{ state.userList?.totalUsers || 0 }} itens
+              </p>
+              <div class="sort-form" id="default-sort-form-spot"></div>
+              <button
+                v-if="isMobile"
+                @click="toggleMenu"
+                class="btn-mobile-menu"
+              >
+                <IconBase name="IconTune" :height="22" color="#222D39" />
+              </button>
+            </section>
+            <section class="main-content__user-list">
+              <TransitionGroup name="fade" mode="out-in">
+                <template v-if="isLoading">
+                  <div
+                    v-for="skeleton in 9"
+                    :key="skeleton"
+                    class="main-content__user-card"
+                  >
+                    <UserCardSkeleton />
+                  </div>
+                </template>
+                <template v-else>
+                  <div
+                    v-for="user in state.userList?.users"
+                    :key="user.id"
+                    class="main-content__user-card"
+                  >
+                    <UserCard
+                      :id="user.id"
+                      :picture="user.picture"
+                      :name="user.name"
+                      :street="user.street"
+                      :city="user.city"
+                      :state="user.state"
+                      :postcode="user.postcode"
+                    />
+                  </div>
+                </template>
+              </TransitionGroup>
+            </section>
+            <section v-if="!isLoading" class="main-content__pagination">
+              <PaginationNav
+                :max="state.userList?.totalPages ?? 0"
+                :current="state.userList?.currentPage ?? 0"
+                @go-to="handlePaginationUpdate"
+              />
+            </section>
+          </div>
         </section>
       </div>
     </div>
-    <Teleport v-if="state.showSearchBar" to="#tp-header-search-spot">
-      <div class="page-user-list__search-bar">
-        <SearchBar @update="handleSearchUpdate" :disabled="isLoading" />
+
+    <div
+      class="page-user-list__mobile-menu"
+      :class="`page-user-list__mobile-menu--${state.menuStatus}`"
+    >
+      <div class="close">
+        <button @click="toggleMenu" class="close__btn">
+          <IconBase name="IconClose" :height="32" color="#222D39" />
+        </button>
       </div>
-    </Teleport>
+      <div class="mobile-menu">
+        <div class="mobile-menu__item">
+          <div id="mb-sort-spot"></div>
+        </div>
+        <div class="mobile-menu__item">
+          <div id="mb-search-spot"></div>
+        </div>
+        <div class="mobile-menu__item">
+          <div id="mb-state-filter-spot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Items with dinamic places -->
+    <template v-if="state.pageLoaded">
+      <Teleport
+        :to="isMobile ? '#mb-state-filter-spot' : '#default-state-filter-spot'"
+      >
+        <aside class="state-filter">
+          <StateFilter @update="handleStateFilterUpdate" />
+        </aside>
+      </Teleport>
+
+      <Teleport :to="isMobile ? '#mb-sort-spot' : '#default-sort-form-spot'">
+        <div class="sort-block">
+          <p class="sort-block__text">Ordernar por:</p>
+          <div class="sort-block__field">
+            <BaseSelect
+              @change="handleSortUpdate"
+              name="sort-users"
+              :options="SORT_OPTIONS"
+              :disabled="isLoading"
+            />
+          </div>
+        </div>
+      </Teleport>
+
+      <Teleport :to="isMobile ? '#mb-search-spot' : '#tp-header-search-spot'">
+        <div class="search-bar">
+          <SearchBar @update="handleSearchUpdate" :disabled="isLoading" />
+        </div>
+      </Teleport>
+    </template>
   </section>
 </template>
 
@@ -231,26 +305,6 @@ onMounted(() => {
     }
   }
 
-  &__search-bar {
-    display: none;
-
-    @include screen('lg') {
-      width: 400px;
-      display: flex;
-    }
-  }
-
-  &__side-bar {
-    border: $border-size-base solid $gray-400;
-    border-radius: $radius-base;
-    padding: $spacing-6;
-    min-height: 30vh;
-
-    @include screen('lg') {
-      width: 250px;
-    }
-  }
-
   &__main {
     flex: 1;
     display: flex;
@@ -259,6 +313,18 @@ onMounted(() => {
     @include screen('lg') {
       margin-left: $spacing-3;
     }
+  }
+
+  &__mobile-menu {
+    @include side-menu;
+
+    @include screen('lg') {
+      display: none;
+    }
+  }
+
+  &--menu-opened {
+    @include background-shadow;
   }
 }
 
@@ -277,7 +343,7 @@ onMounted(() => {
     }
   }
 
-  &__bottom {
+  &__user-list {
     display: flex;
     flex-wrap: wrap;
     margin: $spacing-3 negative($spacing-1) negative($spacing-3)
@@ -293,10 +359,27 @@ onMounted(() => {
     }
   }
 
-  &__count {
+  .result-counter {
     font-size: $text-base;
     font-weight: $font-regular;
     line-height: $leading-4;
+  }
+
+  .sort-form {
+    display: none;
+
+    @include screen('lg') {
+      display: flex;
+    }
+  }
+
+  .btn-mobile-menu {
+    background: none;
+    border: none;
+
+    @include screen('lg') {
+      display: none;
+    }
   }
 
   &__pagination {
@@ -320,6 +403,49 @@ onMounted(() => {
   &__field {
     min-width: 65px;
     max-width: 130px;
+  }
+}
+
+.state-filter {
+  border-radius: $radius-base;
+  margin-top: $spacing-6;
+  min-height: 30vh;
+  width: 100%;
+
+  @include screen('lg') {
+    border: $border-size-base solid $gray-400;
+    margin-top: 0;
+    padding: $spacing-6;
+    width: 250px;
+  }
+}
+
+.search-bar {
+  width: 100%;
+
+  @include screen('lg') {
+    width: 400px;
+  }
+}
+
+.mobile-menu {
+  padding: 0 $spacing-2;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+
+  &__item {
+    width: 100%;
+    flex: 1;
+
+    &:first-child {
+      display: flex;
+      justify-content: center;
+    }
+
+    &:not(:first-child) {
+      margin-top: $spacing-6;
+    }
   }
 }
 </style>

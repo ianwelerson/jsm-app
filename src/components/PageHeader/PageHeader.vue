@@ -46,10 +46,10 @@ const toggleMenu = () => {
         <div class="header-menu__item">
           <div class="fake-content"></div>
         </div>
-        <div class="header-menu__close">
+        <div class="close">
           <button
             @click="toggleMenu"
-            class="close-btn"
+            class="close__btn"
             data-testid="page-header-menu-open"
           >
             <IconBase name="IconClose" :height="32" color="#222D39" />
@@ -70,10 +70,6 @@ const toggleMenu = () => {
 </template>
 
 <style lang="scss" scoped>
-$mobile-menu-width: calc(
-  (60vw + $spacing-3 + $spacing-3) * -1
-); // Translate the menu the equivalent of his width + padding
-
 .page-header {
   background-color: $gray-300;
   display: flex;
@@ -96,39 +92,12 @@ $mobile-menu-width: calc(
   }
 
   &--menu-opened {
-    &::after {
-      position: fixed;
-      content: '';
-      width: 100vw;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      background-color: $gray-1000;
-      opacity: 0.3;
-      z-index: 0;
-
-      @include screen('lg') {
-        content: none;
-      }
-    }
+    @include background-shadow;
   }
 }
 
 .header-menu {
-  align-items: center;
-  background: $gray-300;
-  box-shadow: 6px 0px 10px 0px rgba(155, 155, 155, 0.4);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  left: 0;
-  opacity: 0;
-  padding: $spacing-11 $spacing-3 $spacing-3 $spacing-3;
-  position: fixed;
-  top: 0;
-  transform: translateX($mobile-menu-width);
-  width: 60vw;
-  z-index: 10;
+  @include side-menu;
 
   @include screen('lg') {
     background: $transparent;
@@ -141,23 +110,9 @@ $mobile-menu-width: calc(
     padding: 0;
     position: relative;
     margin-left: $spacing-3;
+    min-width: auto;
     transform: none;
     width: auto;
-  }
-
-  &--opened {
-    animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; // Inspired in https://animista.net/
-  }
-
-  &--closed {
-    animation: slide-out-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; // Inspired in https://animista.net/
-  }
-
-  &--opened,
-  &--closed {
-    @include screen('lg') {
-      animation: none;
-    }
   }
 
   &__item {
@@ -175,21 +130,6 @@ $mobile-menu-width: calc(
         margin-bottom: 0;
         margin-right: $spacing-3;
       }
-    }
-  }
-
-  &__close {
-    position: absolute;
-    top: $spacing-2;
-    right: $spacing-2;
-
-    @include screen('lg') {
-      display: none;
-    }
-
-    .close-btn {
-      background-color: $transparent;
-      border: none;
     }
   }
 }
@@ -223,29 +163,6 @@ $mobile-menu-width: calc(
   @include screen('lg') {
     height: 16px;
     width: 150px;
-  }
-}
-
-// Amimations
-@keyframes slide-in-left {
-  0% {
-    transform: translateX($mobile-menu-width);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-out-left {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX($mobile-menu-width);
-    opacity: 0;
   }
 }
 </style>

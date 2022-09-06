@@ -59,21 +59,21 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="state-filter">
-    <p class="state-filter__title">Por Estado</p>
-    <ul class="state-filter__list">
+  <div class="state-filter-component">
+    <p class="state-filter-component__title">Por Estado</p>
+    <ul class="state-filter-component__list">
       <template v-if="isLoading">
         <li
           v-for="skeleton in 5"
           :key="skeleton"
-          class="state-filter__item state-filter__item--skeleton"
+          class="state-filter-component__item state-filter-component__item--skeleton"
         ></li>
       </template>
       <template v-else>
         <li
           v-for="stateData in countryStateList"
           :key="stateData.key"
-          class="state-filter__item"
+          class="state-filter-component__item"
         >
           <input
             data-testid="state-filter-input"
@@ -82,11 +82,11 @@ const emit = defineEmits<{
             :value="stateData.key"
             :id="`${stateData.key}-checkbox`"
             v-model="state.selectedState"
-            class="state-filter__input"
+            class="state-filter-component__input"
           />
           <label
             :for="`${stateData.key}-checkbox`"
-            class="state-filter__label"
+            class="state-filter-component__label"
             >{{ stateData.name }}</label
           >
         </li>
@@ -94,7 +94,7 @@ const emit = defineEmits<{
     </ul>
     <button
       v-if="state.countryStates.length > SHORT_COUNTRY_LIST_NUM && !isLoading"
-      class="state-filter__show-more"
+      class="state-filter-component__show-more"
       @click="toggleVisibleStates"
       data-testid="state-filter-show-more"
     >
@@ -104,7 +104,7 @@ const emit = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-.state-filter {
+.state-filter-component {
   width: 100%;
   height: 100%;
 
